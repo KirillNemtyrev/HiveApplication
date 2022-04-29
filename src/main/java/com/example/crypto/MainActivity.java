@@ -67,7 +67,7 @@ public class MainActivity {
         // Action mouse on Image Farm
         fieldImage.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://hiveon.com/"));
         // Action mouse on Image GitHub
-        fieldGitHub.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev"));
+        fieldGitHub.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
         // Action mouse on update
         fieldUpdate.setOnMouseClicked(mouseEvent -> {
             Stage stage = (Stage) fieldCreateFerm.getScene().getWindow();

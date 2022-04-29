@@ -90,7 +90,7 @@ public class AuthController {
             clipboard.setContents(stringSelection, null);
         });
         // Action mouse on Image GitHub
-        fieldGitHub.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev"));
+        fieldGitHub.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
         // Action mouse on Author Field
         fieldAuthor.setOnMouseEntered(event -> fieldAuthor.setStyle("-fx-text-fill:black"));
         fieldAuthor.setOnMouseExited(event -> fieldAuthor.setStyle("-fx-text-fill:gray"));
@@ -98,7 +98,7 @@ public class AuthController {
         // Action mouse on Recovery Field
         fieldRecovery.setOnMouseEntered(event -> fieldRecovery.setStyle("-fx-text-fill:black"));
         fieldRecovery.setOnMouseExited(event -> fieldRecovery.setStyle("-fx-text-fill:gray"));
-        fieldRecovery.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://the.hiveos.farm/restore-pass/"));
+        fieldRecovery.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev"));
         // Input text field
         fieldToken.textProperty().addListener((observableValue, oldValue, newValue) -> {
             fieldToken.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: black");
