@@ -78,7 +78,7 @@ public class Request {
         }
     }
 
-    public static void GetAccount(){
+    public static JSONObject GetAccount(){
         try {
             HttpGet request = new HttpGet(basicURL + "account");
             request.addHeader("content-type", "application/json");
@@ -89,10 +89,13 @@ public class Request {
             HttpEntity entity = response.getEntity();
             String result = EntityUtils.toString(entity);
 
-            System.out.print(result);
+            // Get access token
+            Object obj = new JSONParser().parse(result);
+            JSONObject jo = (JSONObject) obj;
 
+            return jo;
 
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
