@@ -17,14 +17,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="317.0" layoutY="650.0" text="© Все данные хранятся только на вашем компьютере" textFill="GREY">
-         <font>
-            <Font name="Consolas Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
-         </cursor>
-      </Label>
       <ImageView fx:id="fieldImage" fitHeight="55.0" fitWidth="49.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/farm.png" />
@@ -38,15 +30,15 @@
             <Font name="Consolas Bold" size="31.0" />
          </font>
       </Label>
-      <Label fx:id="fieldName" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="4.0" prefHeight="49.0" prefWidth="746.0" text="ИМЯ" textFill="GREY">
+      <Label fx:id="fieldName" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="3.0" prefHeight="22.0" prefWidth="746.0" text="ИМЯ" textFill="GREY">
          <font>
             <Font name="Consolas Bold" size="18.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Label>
-      <AnchorPane fx:id="clickedImage11" layoutY="53.0" prefHeight="83.0" prefWidth="950.0" style="-fx-background-color: #363d45;">
+      <AnchorPane fx:id="MainBanner" layoutY="53.0" prefHeight="83.0" prefWidth="950.0" style="-fx-background-color: #363d45;">
          <children>
             <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
                <children>
@@ -86,5 +78,35 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
+      <AnchorPane fx:id="fieldNoFerm" layoutX="226.0" layoutY="233.0" prefHeight="200.0" prefWidth="500.0">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="66.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/sadness.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="80.0" layoutY="66.0" prefHeight="22.0" prefWidth="414.0" text="У ВАС НЕ ИМЕЕТСЯ СОЗДАННЫХ МАЙНИНГ ФЕРМ" textFill="GREY">
+               <font>
+                  <Font name="Consolas Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="fieldCreateFerm" layoutX="188.0" layoutY="91.0" text="СОЗДАТЬ ФЕРМУ?" textFill="#c3c3c3">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="fieldUpdate" fitHeight="34.0" fitWidth="38.0" layoutX="46.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/update.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

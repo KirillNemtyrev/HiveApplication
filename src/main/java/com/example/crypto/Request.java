@@ -27,7 +27,7 @@ public class Request {
     public static final int CODE_VALIDATION_ERROR = 422;
 
     // For auth
-    public static String ACCESS_TOKEN = "";
+    public static String ACCESS_TOKEN = null;
     private String TOKEN_TYPE = "bearer";
     private static int EXPIRES_IN = 0;
     static HttpClient httpClient = HttpClientBuilder.create().build();

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="509.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.NewFermaController">
+   <children>
+      <AnchorPane layoutX="36.0" layoutY="37.0" prefHeight="326.0" prefWidth="438.0" style="-fx-background-color: #363d45;">
+         <children>
+            <TextField fx:id="fieldName" layoutX="14.0" layoutY="44.0" prefHeight="35.0" prefWidth="409.0" promptText="ВВЕДИТЕ ИМЯ НОВОЙ ФЕРМЫ" style="-fx-background-color: #22262b;">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnSave" layoutX="309.0" layoutY="280.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color: c6ccd2;" text="Сохранить" textFill="#3c3c3c">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <AnchorPane fx:id="clickedImage" layoutX="20.0" layoutY="58.0" prefHeight="3.0" prefWidth="58.0" style="-fx-background-color: #22262b;" visible="false" />
+            <AnchorPane fx:id="clickedCopy" layoutX="219.0" layoutY="151.0" prefHeight="3.0" prefWidth="28.0" style="-fx-background-color: #22262b;" visible="false" />
+            <Label layoutX="10.0" layoutY="3.0" text="Создать новую ферму" textFill="#c6ccd2">
+               <font>
+                  <Font name="Consolas Bold" size="18.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="fieldAutoTags" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" text="Автотэги" textFill="#c6ccd2">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+            </CheckBox>
+            <AnchorPane layoutX="174.0" layoutY="92.0" prefHeight="75.0" prefWidth="246.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label layoutX="8.0" layoutY="3.0" text="Если включено - все воркеры" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="8.0" layoutY="20.0" text="фермы автоматически помечаются." textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="8.0" layoutY="35.0" text="Риги помечены информацией GPU." textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="8.0" layoutY="52.0" text="ASIC помечены названием модели." textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="174.0" layoutY="187.0" prefHeight="75.0" prefWidth="246.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label layoutX="8.0" layoutY="3.0" text="Вы можете платить за Hive OS" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="8.0" layoutY="20.0" text="на Hiveon Pool (3%) вместо" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="8.0" layoutY="35.0" text="оычной цены за каждый воркер." textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fieldMore" layoutX="8.0" layoutY="52.0" text="Подробнее.." textFill="#1a7cdd">
+                     <font>
+                        <Font name="Consolas Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <CheckBox layoutX="14.0" layoutY="187.0" mnemonicParsing="false" text="Hiveon" textFill="#c6ccd2">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="fieldHiveon" layoutX="105.0" layoutY="189.0" text="Pool" textFill="#c6ccd2">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="210.0" text="Charging" textFill="#c6ccd2">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnCancel" layoutX="182.0" layoutY="280.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color: #363d45;" text="Отмена" textFill="#c6ccd2">
+               <font>
+                  <Font name="Consolas Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

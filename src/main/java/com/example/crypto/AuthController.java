@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AuthController {
 
@@ -67,7 +68,7 @@ public class AuthController {
             clickedImage.setStyle("-fx-background-color: #22262b");
         });
         fieldImage.setOnMouseClicked(mouseEvent -> {
-            WindowOpen.openWebpage("https://hiveon.com/");
+            WindowPage.openWebpage("https://hiveon.com/");
             clickedImage.setStyle("-fx-background-color: lime");
         });
         // Action mouse on Image ShowPassword
@@ -89,15 +90,15 @@ public class AuthController {
             clipboard.setContents(stringSelection, null);
         });
         // Action mouse on Image GitHub
-        fieldGitHub.setOnMouseClicked(mouseEvent -> WindowOpen.openWebpage("https://github.com/KirillNemtyrev"));
+        fieldGitHub.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev"));
         // Action mouse on Author Field
         fieldAuthor.setOnMouseEntered(event -> fieldAuthor.setStyle("-fx-text-fill:black"));
         fieldAuthor.setOnMouseExited(event -> fieldAuthor.setStyle("-fx-text-fill:gray"));
-        fieldAuthor.setOnMouseClicked(mouseEvent -> WindowOpen.openWebpage("https://vk.com/kirill_9085"));
+        fieldAuthor.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://vk.com/kirill_9085"));
         // Action mouse on Recovery Field
         fieldRecovery.setOnMouseEntered(event -> fieldRecovery.setStyle("-fx-text-fill:black"));
         fieldRecovery.setOnMouseExited(event -> fieldRecovery.setStyle("-fx-text-fill:gray"));
-        fieldRecovery.setOnMouseClicked(mouseEvent -> WindowOpen.openWebpage("https://the.hiveos.farm/restore-pass/"));
+        fieldRecovery.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://the.hiveos.farm/restore-pass/"));
         // Input text field
         fieldToken.textProperty().addListener((observableValue, oldValue, newValue) -> {
             fieldToken.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: black");
@@ -131,7 +132,9 @@ public class AuthController {
             ConfigFile.setSave(save_input);
             ConfigFile.SaveCFG();
             //Request.GetAccount();
-            WindowOpen.open("Главная", "main_activity.fxml", 950, 665);
+
+            Stage stage = (Stage) btnAuth.getScene().getWindow();
+            WindowPage.updateWindow(stage, "Главная", "main_activity.fxml", 950, 665);
         });
     }
 
