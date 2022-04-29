@@ -76,7 +76,7 @@ public class MainActivity {
         // Action mouse on Author Field
         fieldAuthor.setOnMouseEntered(event -> fieldAuthor.setStyle("-fx-text-fill:black"));
         fieldAuthor.setOnMouseExited(event -> fieldAuthor.setStyle("-fx-text-fill:gray"));
-        fieldAuthor.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://vk.com/kirill_9085"));
+        fieldAuthor.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev"));
         // Action mouse on CreateFerm
         fieldCreateFerm.setOnMouseEntered(event -> fieldCreateFerm.setStyle("-fx-text-fill:black"));
         fieldCreateFerm.setOnMouseExited(event -> fieldCreateFerm.setStyle("-fx-text-fill:#c3c3c3"));
