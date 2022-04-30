@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.MainActivity">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Farms">
    <children>
       <ImageView fx:id="fieldImage" fitHeight="55.0" fitWidth="49.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -63,7 +63,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="fieldNoFerm" layoutX="226.0" layoutY="233.0" prefHeight="200.0" prefWidth="500.0" visible="false">
+      <AnchorPane fx:id="fieldNoFerm" layoutX="226.0" layoutY="233.0" prefHeight="200.0" prefWidth="500.0">
          <children>
             <ImageView fitHeight="63.0" fitWidth="66.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -90,7 +90,7 @@
             <Cursor fx:constant="DISAPPEAR" />
          </cursor>
       </Pagination>
-      <Label fx:id="fieldAddFerm" layoutX="756.0" layoutY="178.0" prefHeight="18.0" prefWidth="168.0" text="СОЗДАТЬ НОВУЮ ФЕРМУ" textFill="GREY">
+      <Label fx:id="fieldAddFerm" layoutX="756.0" layoutY="178.0" prefHeight="18.0" prefWidth="168.0" text="СОЗДАТЬ НОВУЮ ФЕРМУ" textFill="GREY" visible="false">
          <font>
             <Font name="Consolas Bold" size="16.0" />
          </font>
@@ -106,7 +106,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <AnchorPane layoutX="308.0" layoutY="10.0" prefHeight="34.0" prefWidth="628.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
+      <AnchorPane layoutX="415.0" layoutY="10.0" prefHeight="34.0" prefWidth="521.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
          <children>
             <Label fx:id="btnFarm" layoutX="14.0" layoutY="8.0" text="ФЕРМЫ" textFill="#9e9e9e">
                <font>
@@ -141,7 +141,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnNotifications" layoutX="312.0" layoutY="8.0" prefHeight="18.0" prefWidth="100.0" text="УВЕДОМЛЕНИЯ" textFill="#9e9e9e">
+            <Label fx:id="btnChangeUser" layoutX="314.0" layoutY="8.0" prefHeight="18.0" prefWidth="138.0" text="СМЕНИТЬ АККАУНТ" textFill="#9e9e9e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
@@ -149,15 +149,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnChangeUser" layoutX="422.0" layoutY="8.0" prefHeight="18.0" prefWidth="138.0" text="СМЕНИТЬ АККАУНТ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label fx:id="btnSignOut" layoutX="569.0" layoutY="8.0" prefHeight="18.0" prefWidth="49.0" text="ВЫЙТИ" textFill="#943e3e">
+            <Label fx:id="btnSignOut" layoutX="463.0" layoutY="8.0" prefHeight="18.0" prefWidth="49.0" text="ВЫЙТИ" textFill="#943e3e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>

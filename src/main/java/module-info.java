@@ -17,4 +17,7 @@ module com.example.crypto {
 
     opens com.example.crypto to javafx.fxml;
     exports com.example.crypto;
+
+    opens com.example.crypto.controllers to javafx.fxml;
+    exports com.example.crypto.controllers;
 }

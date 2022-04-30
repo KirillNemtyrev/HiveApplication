@@ -1,0 +1,181 @@
+package com.example.crypto.methods;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+
+public class Request {
+
+    // Successful codes
+    public static final int CODE_AUTHENTICATION_TOKEN = 200;
+    public static final int CODE_CREATE_FARM = 201;
+    public static final int CODE_AUTHENTICATED_TOKEN = 204;
+    // Client error
+    public static final int CODE_NOT_AUTHENTICATED = 401;
+    public static final int CODE_NOT_ALLOWED = 403;
+    public static final int CODE_VALIDATION_ERROR = 422;
+    // API URL
+    private static String basicURL = "https://api2.hiveos.farm/api/v2/";
+
+    private static HttpClient httpClient = HttpClientBuilder.create().build();
+
+    public static int sendAuthentication(String login, String password, String code){
+        try {
+            JSONObject params = new JSONObject();
+            params.put("login", login);
+            params.put("password", password);
+            params.put("twofa_code", code);
+            params.put("remember", true);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPost request = new HttpPost(basicURL + "auth/login");
+            request.setHeader("content-type", "application/json");
+            request.setEntity(payload);
+
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            // Get access token
+            Object parse = new JSONParser().parse(result);
+            JSONObject body = (JSONObject) parse;
+
+            Account.setAccessToken((String) body.get("access_token"));
+            System.out.print(HTTP_CODE_RESPONSE);
+            response.close();
+
+            return HTTP_CODE_RESPONSE;
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int Logout(){
+        try {
+
+            HttpPost request = new HttpPost(basicURL + "auth/logout");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int checkAccessToken(String token){
+        try {
+            HttpGet request = new HttpGet(basicURL + "auth/check");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + token);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return HTTP_CODE_RESPONSE;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void getAccount(){
+        try {
+            HttpGet request = new HttpGet(basicURL + "account");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            response.close();
+
+            Object parse = new JSONParser().parse(result);
+            JSONObject main_info = (JSONObject) parse;
+            JSONObject profile = (JSONObject) main_info.get("profile");
+
+            Account.setLogin((String) profile.get("login"));
+            Account.setName((String) profile.get("name"));
+            Account.setEmail((String) profile.get("email"));
+            Account.setTracking_id((String) main_info.get("tracking_id"));
+
+            Account.setBalance((Long) main_info.get("balance"));
+            Account.setUser_id((Long) main_info.get("user_id"));
+
+            Account.setEmail_confirm((boolean) main_info.get("email_confirmed"));
+            Account.setCode_enabled((boolean) main_info.get("2fa_enabled"));
+
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void getFarms(){
+        try {
+            HttpGet request = new HttpGet(basicURL + "farms");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            response.close();
+
+            // Get all farms
+            Object parse = new JSONParser().parse(result);
+            JSONObject farm = (JSONObject) parse;
+            JSONArray farms = (JSONArray) farm.get("data");
+            Farm.setFarms(farms);
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int createFerm(String name, boolean autotags, boolean hiveon){
+        try {
+            // Details for post
+            JSONObject params = new JSONObject();
+            params.put("name", name);
+            params.put("timezone", "Europe/Moscow");
+            params.put("auto_tags", autotags);
+            params.put("charge_on_pool", hiveon);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPost request = new HttpPost(basicURL + "farms");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.setEntity(payload);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
