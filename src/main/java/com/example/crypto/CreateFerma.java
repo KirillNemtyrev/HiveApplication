@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class NewFermaController {
+public class CreateFerma {
 
     @FXML
     private ResourceBundle resources;
@@ -43,6 +43,9 @@ public class NewFermaController {
     private Label fieldMore;
 
     @FXML
+    private CheckBox fieldHiveOn;
+
+    @FXML
     void initialize() {
         // Action mouse on Author Field
         fieldMore.setOnMouseEntered(event -> fieldMore.setStyle("-fx-text-fill:#094680"));
@@ -51,6 +54,23 @@ public class NewFermaController {
         // Action mouse on btn Save
         btnSave.setOnMouseEntered(event -> btnSave.setStyle("-fx-background-color: #22262b"));
         btnSave.setOnMouseExited(event -> btnSave.setStyle("-fx-background-color: #c6ccd2"));
+        btnSave.setOnAction(actionEvent -> {
+            String name = fieldName.getText().trim();
+            if(name.isEmpty()){
+                fieldName.setStyle("-fx-background-color: #22262b; -fx-border-color: red");
+                return;
+            }
+
+            int code = HTTPRequests.CreateFerm(name, fieldAutoTags.isSelected(), fieldHiveOn.isSelected());
+            if(code != HTTPRequests.CODE_CREATE_FARM){
+                fieldName.setStyle("-fx-background-color: #22262b; -fx-border-color: red");
+                return;
+            }
+            // Close
+            Stage stage = (Stage) btnSave.getScene().getWindow();
+            WindowPage.updateWindow((Stage) stage.getOwner(), "Главная", "main_activity.fxml", 950, 665,false);
+            stage.close();
+        });
         // Action mouse on btn Cancel
         btnCancel.setOnMouseEntered(event -> btnCancel.setStyle("-fx-background-color: #22262b"));
         btnCancel.setOnMouseExited(event -> btnCancel.setStyle("-fx-background-color: #363d45"));

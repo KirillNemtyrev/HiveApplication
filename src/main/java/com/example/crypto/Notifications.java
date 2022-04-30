@@ -1,5 +1,9 @@
 package com.example.crypto;
 
+import java.net.URL;
+import java.security.Timestamp;
+import java.util.Date;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -10,15 +14,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
-
-public class MainActivity {
+public class Notifications {
 
     @FXML
     private ResourceBundle resources;
@@ -39,19 +38,16 @@ public class MainActivity {
     private Label btnFarm;
 
     @FXML
+    private Label btnNotifications;
+
+    @FXML
     private Label btnPayment;
 
     @FXML
     private Label btnReferals;
 
     @FXML
-    private Label btnNotifications;
-
-    @FXML
     private Label btnSignOut;
-
-    @FXML
-    private Label fieldAddFerm;
 
     @FXML
     private Label fieldBalance;
@@ -74,35 +70,27 @@ public class MainActivity {
     @FXML
     private AnchorPane fieldNoFerm;
 
-    private JSONObject getAccount;
-    private JSONObject getFarmFull;
-    private JSONArray getFarms;
+    private JSONObject getDate;
+    private JSONArray getNotifications;
 
-    private int countFarms;
+    private int countNotifications;
 
     @FXML
     void initialize() {
 
-        Date date = new Date();
-        int currentHour = date.getHours();
-        getAccount = HTTPRequests.GetAccount();
-        getFarmFull = HTTPRequests.GetFarms();
-        getFarms = (JSONArray) getFarmFull.get("data");
-        countFarms = getFarms.size();
-        //createActivePane();
+        //Date date = new Date();
+        //int currentHour = date.getHours();
 
-        fieldNoFerm.setVisible(true);
-        fieldAddFerm.setVisible(false);
+        getDate = HTTPRequests.GetEvents();
+        getNotifications = (JSONArray) getDate.get("data");
+        countNotifications = getNotifications.size();
 
-        if(countFarms != 0) {
+        if(countNotifications != 0) {
             PageCount.setVisible(true);
-            PageCount.setPageCount((int) Math.ceil((double) countFarms/4.0));
-
-            fieldNoFerm.setVisible(false);
-            fieldAddFerm.setVisible(true);
+            PageCount.setPageCount((int) Math.ceil((double) countNotifications/9.0));
         }
 
-        JSONObject profile = (JSONObject) getAccount.get("profile");
+        /*JSONObject profile = (JSONObject) getAccount.get("profile");
         fieldBalance.setText("$ " + getAccount.get("balance"));
         fieldName.setText((String) profile.get("login"));
         fieldFarms.setText(String.valueOf(countFarms));
@@ -111,25 +99,10 @@ public class MainActivity {
         if(currentHour >= 12 && currentHour < 18) welcomeMessage = "Добрый день, " + profile.get("login") + "!";
         else if(currentHour >= 18 && currentHour < 24) welcomeMessage = "Добрый вечер, " + profile.get("login") + "!";
         else if(currentHour >= 0 && currentHour < 6) welcomeMessage = "Доброй ночи, " + profile.get("login") + "!";
-        fieldName.setText(welcomeMessage);
+        fieldName.setText(welcomeMessage);*/
 
         fieldImage.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://hiveon.com/"));
         fieldGitHub.setOnMouseClicked(mouseEvent -> WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
-
-        // Action on button Add ferm one
-        fieldCreateFerm.setOnMouseEntered(event -> fieldCreateFerm.setStyle("-fx-text-fill:black"));
-        fieldCreateFerm.setOnMouseExited(event -> fieldCreateFerm.setStyle("-fx-text-fill:#c3c3c3"));
-        fieldCreateFerm.setOnMouseClicked(mouseEvent -> {
-            Stage stage = (Stage) fieldCreateFerm.getScene().getWindow();
-            WindowPage.openModal(stage, "Новая ферма", "new_ferm.fxml", 509, 400);
-        });
-        // Action on button Add ferm two
-        fieldAddFerm.setOnMouseEntered(event -> fieldAddFerm.setStyle("-fx-text-fill:#656060"));
-        fieldAddFerm.setOnMouseExited(event -> fieldAddFerm.setStyle("-fx-text-fill:gray"));
-        fieldAddFerm.setOnMouseClicked(mouseEvent -> {
-            Stage stage = (Stage) fieldAddFerm.getScene().getWindow();
-            WindowPage.openModal(stage, "Новая ферма", "new_ferm.fxml", 509, 400);
-        });
 
         // Menu page
         btnFarm.setOnMouseEntered(mouseEvent -> btnFarm.setTextFill(Paint.valueOf("#656060")));
@@ -147,10 +120,7 @@ public class MainActivity {
         btnPayment.setOnMouseExited(mouseEvent -> btnPayment.setTextFill(Paint.valueOf("#9e9e9e")));
         btnNotifications.setOnMouseEntered(mouseEvent -> btnNotifications.setTextFill(Paint.valueOf("#656060")));
         btnNotifications.setOnMouseExited(mouseEvent -> btnNotifications.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnNotifications.setOnMouseClicked(mouseEvent -> {
-            Stage stage = (Stage) btnNotifications.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Уведомления", "notifications.fxml", 950, 665,false);
-        });
+        btnNotifications.setOnMouseClicked(mouseEvent -> System.out.print(HTTPRequests.GetEvents()));
 
         btnChangeUser.setOnMouseEntered(mouseEvent -> btnChangeUser.setTextFill(Paint.valueOf("#656060")));
         btnChangeUser.setOnMouseExited(mouseEvent -> btnChangeUser.setTextFill(Paint.valueOf("#9e9e9e")));
@@ -181,11 +151,11 @@ public class MainActivity {
 
             int count = 1;
             AnchorPane PagePane = createActivePane();
-            while (4*pageIndex + count <= countFarms && count <= 4){
+            while (4*pageIndex + count <= countNotifications && count <= 9){
 
-                final double posX = 26.0; // default
-                double posY = 60.0 + 100.0*(count - 1);
-                int index = 4*pageIndex + (count - 1);
+                final double posX = 25.0; // default
+                double posY = 15.0 + 50.0*(count - 1);
+                int index = 9*pageIndex + (count - 1);
 
                 //addList(posX, posY, index);
                 PagePane.getChildren().add(addList(posX, posY, index));
@@ -211,15 +181,9 @@ public class MainActivity {
         AnchorPane ListPane = new AnchorPane();
         ListPane.setLayoutX(posX);
         ListPane.setLayoutY(posY);
-        ListPane.setPrefWidth(899.0);
-        ListPane.setPrefHeight(83.0);
-        ListPane.setCursor(Cursor.cursor("HAND"));
+        ListPane.setPrefWidth(901.0);
+        ListPane.setPrefHeight(34.0);
         ListPane.setStyle("-fx-background-color: #2f353c");
-
-        ListPane.setOnMouseEntered(event -> ListPane.setStyle("-fx-background-color: #192128"));
-        ListPane.setOnMouseExited(event -> ListPane.setStyle("-fx-background-color: #2f353c"));
-
-        //fieldActionFerm.getChildren().add(ListPane);
 
         return ListPane;
     }
@@ -241,55 +205,22 @@ public class MainActivity {
     @FXML
     public AnchorPane addList(double posX, double posY, int index){
 
-        JSONObject farm = (JSONObject) getFarms.get(index);
-        JSONObject money = (JSONObject) farm.get("money");
-        JSONObject stats = (JSONObject) farm.get("stats");
+        JSONObject notification = (JSONObject) getNotifications.get(index);
+        AnchorPane notificationPane = createPane(posX, posY);
 
-        AnchorPane farmPane = createPane(posX, posY);
+        String ACTION = String.valueOf(notification.get("type"));
+        addLabel(notificationPane, "", ACTION, "#c3c3c3", 14.0, 8.0, 266.0,18.0);
 
-        String NAME = String.valueOf(farm.get("name"));
-        addLabel(farmPane, "", NAME, "#c3c3c3", 9.0, 5.0, 508.0,19.0);
+        String IP = String.valueOf(notification.get("ip"));
+        addLabel(notificationPane, "", IP, "#c3c3c3", 392.0, 8.0, 138.0,18.0);
 
-        String Workers = String.valueOf(stats.get("workers_online"));
-        addLabel(farmPane, "", Workers, "#c3c3c3", 13.0, 32.0, 49.0,19.0);
-        addLabel(farmPane, "", "В СЕТИ", "GREY", 13.0, 51.0, 53.0,18.0);
+        //Timestamp timestamp = (Timestamp) notification.get("timestamp");
 
-        String GPUS = stats.get("gpus_online") + "/" + stats.get("gpus_total");
-        addLabel(farmPane, "", GPUS, "#c3c3c3", 83.0, 32.0, 49.0,19.0);
-        addLabel(farmPane, "", "GPUS", "GREY", 83.0, 51.0, 36.0,18.0);
+        //Date date = new Date(timestamp.getTimestamp());
+        //String TIME = timestamp.getTimestamp().toString();
+        addLabel(notificationPane, "CENTER_RIGHT", "TIME", "#c3c3c3", 621.0, 8.0, 266.0,19.0);
 
-        String RIGS = stats.get("rigs_online") + "/" + stats.get("rigs_total");
-        addLabel(farmPane, "", RIGS, "#c3c3c3", 153.0, 32.0, 49.0,19.0);
-        addLabel(farmPane, "", "RIGS", "GREY", 153.0, 51.0, 36.0,18.0);
-
-        String ASICS = stats.get("asics_online") + "/" + stats.get("asics_total");
-        addLabel(farmPane, "", ASICS, "#c3c3c3", 223.0, 32.0, 49.0,19.0);
-        addLabel(farmPane, "", "ASICS", "GREY", 223.0, 51.0, 44.0,18.0);
-
-        String BOARDS = stats.get("boards_online") + "/" + stats.get("boards_total");
-        addLabel(farmPane, "", BOARDS, "#c3c3c3", 293.0, 32.0, 49.0,19.0);
-        addLabel(farmPane, "", "BOARDS", "GREY", 293.0, 51.0, 53.0,18.0);
-
-        String DEVICES = stats.get("devices_online") + "/" + stats.get("devices_total");
-        addLabel(farmPane, "", DEVICES, "#c3c3c3", 363.0, 32.0, 49.0,19.0);
-        addLabel(farmPane, "", "DEVICES", "GREY", 363.0, 51.0, 62.0,18.0);
-
-        String MONTHLY_COST = money.get("monthly_cost") + " $";
-        addLabel(farmPane, "CENTER_RIGHT", MONTHLY_COST, "#c3c3c3", 578.0, 32.0, 98.0,22.0);
-        addLabel(farmPane, "", "МЕСЯЧНЫЙ ПЛАТЁЖ", "GREY", 544.0, 51.0, 132.0,18.0);
-
-        String DISCOUNT = money.get("discount") + " %";
-        addLabel(farmPane, "CENTER_RIGHT", DISCOUNT, "#c3c3c3", 687.0, 32.0, 98.0,22.0);
-        addLabel(farmPane, "", "СКИДКА", "GREY", 736.0, 51.0, 53.0,18.0);
-
-        String BALANCE = money.get("balance") + " $";
-        addLabel(farmPane, "CENTER_RIGHT", BALANCE, "#c3c3c3", 785.0, 32.0, 98.0,22.0);
-        addLabel(farmPane, "", "БАЛАНС", "GREY", 834.0, 51.0, 53.0,18.0);
-
-        String POWER = farm.get("hardware_power_draw") + " ВТ";
-        addLabel(farmPane, "CENTER_RIGHT", POWER, "#c3c3c3", 736.0, 5.0, 158.0,19.0);
-
-        return farmPane;
+        return notificationPane;
     }
 
 }

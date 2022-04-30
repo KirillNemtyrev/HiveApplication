@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="509.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.NewFermaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="509.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.CreateFerma">
    <children>
       <AnchorPane layoutX="36.0" layoutY="37.0" prefHeight="326.0" prefWidth="438.0" style="-fx-background-color: #363d45;">
          <children>
-            <TextField fx:id="fieldName" layoutX="14.0" layoutY="44.0" prefHeight="35.0" prefWidth="409.0" promptText="ВВЕДИТЕ ИМЯ НОВОЙ ФЕРМЫ" style="-fx-background-color: #22262b;">
+            <TextField fx:id="fieldName" layoutX="14.0" layoutY="44.0" prefHeight="35.0" prefWidth="409.0" promptText="ВВЕДИТЕ ИМЯ НОВОЙ ФЕРМЫ" style="-fx-background-color: white;">
                <font>
                   <Font name="Consolas Bold" size="17.0" />
                </font>
@@ -88,7 +88,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <CheckBox layoutX="14.0" layoutY="187.0" mnemonicParsing="false" text="Hiveon" textFill="#c6ccd2">
+            <CheckBox fx:id="fieldHiveOn" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" text="Hiveon" textFill="#c6ccd2">
                <font>
                   <Font name="Consolas Bold" size="17.0" />
                </font>

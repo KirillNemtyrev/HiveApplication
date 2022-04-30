@@ -8,7 +8,7 @@ public class StartApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ConfigFile.LoadCFG();
-        if(Request.ACCESS_TOKEN == null || Request.CheckAuthentication() != Request.CODE_AUTHENTICATED_TOKEN) {
+        if(HTTPRequests.ACCESS_TOKEN.isEmpty() || HTTPRequests.CheckAuthentication() != HTTPRequests.CODE_AUTHENTICATED_TOKEN) {
             WindowPage.open("Авторизация", "auth.fxml", 600, 400);
             return;
         }

@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class AuthController {
+public class Authentication {
 
     @FXML
     private ResourceBundle resources;
@@ -116,7 +116,7 @@ public class AuthController {
             String twofa_code = field2FA.getText().trim();
             // Not succesfull
             if(login.isEmpty() || password.isEmpty() ||
-                    Request.Authentication(login, password, twofa_code) != Request.CODE_AUTHENTICATION_TOKEN) {
+                    HTTPRequests.Authentication(login, password, twofa_code) != HTTPRequests.CODE_AUTHENTICATION_TOKEN) {
                 fieldToken.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: red");
                 fieldPassword.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: red");
                 field2FA.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: red");
@@ -124,14 +124,13 @@ public class AuthController {
             }
 
             // Succesfull
-            boolean save_input = fieldSave.isSelected();
-            if(save_input) {
+            if(fieldSave.isSelected()) {
                 ConfigFile.setLOGIN(login);
                 ConfigFile.setPASSWORD(password);
             }
-            ConfigFile.setSave(save_input);
+            ConfigFile.setSave(fieldSave.isSelected());
             ConfigFile.SaveCFG();
-            //Request.GetAccount();
+            //HTTPRequests.GetAccount();
 
             Stage stage = (Stage) btnAuth.getScene().getWindow();
             WindowPage.updateWindow(stage, "Главная", "main_activity.fxml", 950, 665);

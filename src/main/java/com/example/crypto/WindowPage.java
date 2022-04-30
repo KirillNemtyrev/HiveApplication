@@ -45,9 +45,13 @@ public class WindowPage {
         }
     }
 
-    public static void updateWindow(Stage stage, String name, String file, double weight, double height){
+    public static void updateWindow(Stage stage, String name, String file, double weight, double height) {
+        updateWindow(stage, name,file, weight, height, true);
+    }
+
+    public static void updateWindow(Stage stage, String name, String file, double weight, double height, boolean hide){
         try {
-            stage.hide();
+            if (hide) stage.hide();
             FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource(file));
             scene = new Scene(fxmlLoader.load(), weight, height);
             stage.setTitle(name);

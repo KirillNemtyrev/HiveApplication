@@ -19,7 +19,6 @@ public class ConfigFile {
 
                 LOGIN = props.getProperty("LOGIN");
                 PASSWORD = props.getProperty("PASSWORD");
-                Request.ACCESS_TOKEN = props.getProperty("TOKEN");
                 SAVE_AUTO = Boolean.getBoolean(props.getProperty("SAVE_AUTO"));
                 return;
             }
@@ -39,7 +38,7 @@ public class ConfigFile {
 
                 writer.write("LOGIN = " + LOGIN + "\n"
                         + "PASSWORD = " + PASSWORD + "\n"
-                        + "TOKEN = " + Request.ACCESS_TOKEN + "\n"
+                        + "TOKEN = " + HTTPRequests.ACCESS_TOKEN + "\n"
                         + "SAVE_AUTO = " + SAVE_AUTO);
                 writer.close();
                 return;
