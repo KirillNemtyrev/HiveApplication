@@ -11,7 +11,7 @@
 ### Создаём *artifact*
 > File → Project Structure → Artifacts
 ### Делаем build проекта
-> Build → Build Project
+> Build → Build Project (Ctrl + F9)
 ### После в Launch4j указываем путь к JAR файлу
 ### И добавляем VM Options
 ```sh--module-path "Путь к JavaFX\lib" --add-modules javafx.controls,javafx.fxml>```
