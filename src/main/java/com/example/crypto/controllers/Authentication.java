@@ -1,11 +1,7 @@
 package com.example.crypto.controllers;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
 import com.example.crypto.WindowPage;
 import com.example.crypto.methods.Account;
-import com.example.crypto.methods.Farm;
 import com.example.crypto.methods.Request;
 import com.example.crypto.methods.Settings;
 import javafx.fxml.FXML;
@@ -18,11 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class Authentication {
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button btnAuth;

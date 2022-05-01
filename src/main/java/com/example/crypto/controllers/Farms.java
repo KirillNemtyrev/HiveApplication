@@ -242,6 +242,8 @@ public class Farms {
     public AnchorPane inserFarm(double posX, double posY, int index){
 
         JSONObject farm = Farm.getFarm(index);
+
+        assert farm != null;
         JSONObject money = (JSONObject) farm.get("money");
         JSONObject stats = (JSONObject) farm.get("stats");
 

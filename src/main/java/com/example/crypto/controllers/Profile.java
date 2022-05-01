@@ -5,8 +5,6 @@ import com.example.crypto.methods.Account;
 import com.example.crypto.methods.Farm;
 import com.example.crypto.methods.Request;
 import com.example.crypto.methods.Settings;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
