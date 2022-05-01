@@ -12,18 +12,22 @@ public class Settings {
     private static String SettingPassword = "";
     private static String SettingToken = "";
     private static boolean SettingRemember = false;
-    private static File file = new File("config.ini");
+    private static final File file = new File("config.ini");
 
     public static void getParams(){
         try {
-            if(!file.isFile()) file.createNewFile();
+            if(!file.isFile()) {
+                saveParams();
+                return;
+            }
+
             Properties props = new Properties();
             props.load(new FileInputStream(file));
             // Load props
             SettingLogin = props.getProperty("LOGIN");
             SettingPassword = props.getProperty("PASSWORD");
             SettingToken = props.getProperty("TOKEN");
-            SettingRemember = props.getProperty("REMEMBER").equals("true");
+            SettingRemember = Boolean.valueOf(props.getProperty("REMEMBER"));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
