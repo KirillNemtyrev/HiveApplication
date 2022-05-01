@@ -23,7 +23,7 @@ public class Settings {
             SettingLogin = props.getProperty("LOGIN");
             SettingPassword = props.getProperty("PASSWORD");
             SettingToken = props.getProperty("TOKEN");
-            SettingRemember = Boolean.getBoolean(props.getProperty("REMEMBER"));
+            SettingRemember = props.getProperty("REMEMBER").equals("true");
 
         } catch (IOException e) {
             throw new RuntimeException(e);

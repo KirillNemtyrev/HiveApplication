@@ -1,8 +1,5 @@
 package com.example.crypto.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.example.crypto.WindowPage;
 import com.example.crypto.methods.Request;
 import javafx.fxml.FXML;
@@ -13,12 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NewFarm {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button btnCancel;
@@ -77,13 +68,13 @@ public class NewFarm {
             String nameFarm = fieldName.getText().trim();
 
             if(nameFarm.isEmpty()){
-                fieldName.setStyle("-fx-background-color: #22262b; -fx-border-color: red");
+                fieldName.setStyle("-fx-background-color: white; -fx-border-color: red");
                 return;
             }
 
             int codeRequest = Request.createFerm(nameFarm, fieldAutoTags.isSelected(), fieldHiveOn.isSelected());
             if(codeRequest != Request.CODE_CREATE_FARM){
-                fieldName.setStyle("-fx-background-color: #22262b; -fx-border-color: red");
+                fieldName.setStyle("-fx-background-color: white; -fx-border-color: red");
                 return;
             }
 

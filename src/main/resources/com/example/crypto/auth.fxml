@@ -15,19 +15,19 @@
    <children>
       <AnchorPane layoutX="170.0" layoutY="37.0" prefHeight="326.0" prefWidth="260.0" style="-fx-background-color: LavenderBlush; -fx-background-radius: 20px;">
          <children>
-            <TextField fx:id="fieldLogin" layoutX="48.0" layoutY="87.0" prefHeight="28.0" prefWidth="165.0" promptText="ЛОГИН" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
+            <TextField fx:id="fieldLogin" focusTraversable="false" layoutX="48.0" layoutY="87.0" prefHeight="28.0" prefWidth="165.0" promptText="ЛОГИН" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
             </TextField>
-            <Label layoutX="131.0" layoutY="49.0" prefHeight="15.0" prefWidth="97.0" text="Авторизация">
+            <Label layoutX="105.0" layoutY="43.0" prefHeight="15.0" prefWidth="97.0" text="Авторизация">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
             </Label>
-            <ImageView fx:id="fieldImage" fitHeight="58.0" fitWidth="59.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fieldImage" fitHeight="58.0" fitWidth="59.0" layoutX="19.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/farm.png" />
+                  <Image url="@image/bee.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -59,12 +59,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TextField fx:id="field2FA" layoutX="48.0" layoutY="193.0" prefHeight="34.0" prefWidth="165.0" promptText="КОД" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
+            <TextField fx:id="field2FA" focusTraversable="false" layoutX="48.0" layoutY="193.0" prefHeight="34.0" prefWidth="165.0" promptText="КОД" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="fieldPassword" layoutX="48.0" layoutY="124.0" prefHeight="28.0" prefWidth="165.0" promptText="ПАРОЛЬ" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
+            <PasswordField fx:id="fieldPassword" focusTraversable="false" layoutX="48.0" layoutY="124.0" prefHeight="28.0" prefWidth="165.0" promptText="ПАРОЛЬ" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>

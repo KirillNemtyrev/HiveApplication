@@ -18,10 +18,6 @@ public class Farm {
         return count_farm;
     }
 
-    public static JSONArray getFarms(){
-        return get_farms;
-    }
-
     public static JSONObject getFarm(int index){
 
         if(index > count_farm) return null;

@@ -13,17 +13,16 @@ public class StartApplication extends Application {
         Settings.getParams();
         String AccessToken = Settings.getSettingToken();
 
-        if (Settings.getSettingToken() != null && Request.checkAccessToken(AccessToken) == Request.CODE_AUTHENTICATED_TOKEN) {
+        if (Request.checkAccessToken(AccessToken) == Request.CODE_AUTHENTICATED_TOKEN) {
 
             Account.setAccessToken(AccessToken);
-
-            Request.getAccount();
-            Request.getFarms();
-
+            if(Request.getAccount() == null || Request.getFarms() == null){
+                WindowPage.open("Авторизация", "auth.fxml", 600, 400);
+                return;
+            }
             WindowPage.open("Главная", "farms.fxml", 950, 665);
             return;
         }
-
         WindowPage.open("Авторизация", "auth.fxml", 600, 400);
     }
 

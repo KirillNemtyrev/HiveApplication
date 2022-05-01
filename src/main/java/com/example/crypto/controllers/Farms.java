@@ -1,9 +1,6 @@
 package com.example.crypto.controllers;
 
-import java.net.URL;
 import java.util.Date;
-import java.util.ResourceBundle;
-
 import com.example.crypto.WindowPage;
 import com.example.crypto.methods.Account;
 import com.example.crypto.methods.Farm;
@@ -22,12 +19,6 @@ import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
 public class Farms {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Pagination PageCount;
@@ -142,6 +133,11 @@ public class Farms {
             Stage stage = (Stage) fieldAddFerm.getScene().getWindow();
             WindowPage.openModal(stage, "Новая ферма", "new_ferm.fxml", 509, 400);
         });
+
+        btnAccount.setOnMouseClicked(mouseEvent ->{
+            Stage stage = (Stage) btnAccount.getScene().getWindow();
+            WindowPage.updateWindow(stage, "Аккаунт", "profile.fxml", 950, 665, false);
+        });
         btnChangeUser.setOnMouseClicked(mouseEvent -> {
             Request.Logout();
             Settings.setSettingToken(null);
@@ -165,8 +161,8 @@ public class Farms {
         fieldBalance.setText(balance);
 
         int hour = new Date().getHours();
-        String welcome = ((hour >= 0 && hour < 6) ? "Доброй ночи" : (hour >= 6 && hour < 12) ? "Доброго утра" :
-                (hour >= 12 && hour < 18) ? "Доброго дня" : "Доброго вечера") + " , " + Account.getLogin() ;
+        String welcome = (hour < 6 ? "Доброй ночи" : hour < 12 ? "Доброго утра" :
+                hour < 18 ? "Доброго дня" : "Доброго вечера") + " , " + Account.getLogin();
 
         fieldName.setText(welcome);
         fieldFarms.setText(String.valueOf(Farm.getCount_farm()));

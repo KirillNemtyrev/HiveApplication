@@ -1,11 +1,10 @@
 package com.example.crypto.methods;
 
 public class Account {
-
-    private static Long user_id;
     private static Long balance;
 
     private static String tracking_id;
+    private static String ip_address;
     private static String login;
     private static String name;
     private static String email;
@@ -14,20 +13,20 @@ public class Account {
     private static boolean email_confirm;
     private static boolean code_enabled;
 
-    public static Long getUser_id() {
-        return user_id;
-    }
-
-    public static void setUser_id(Long value) {
-        user_id = value;
-    }
-
     public static String getTracking_id() {
         return tracking_id;
     }
 
     public static void setTracking_id(String value) {
         tracking_id = value;
+    }
+
+    public static String getIp_address() {
+        return ip_address;
+    }
+
+    public static void setIp_address(String value) {
+        ip_address = value;
     }
 
     public static Long getBalance() {

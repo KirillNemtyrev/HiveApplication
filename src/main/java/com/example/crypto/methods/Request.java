@@ -1,5 +1,6 @@
 package com.example.crypto.methods;
 
+import kotlin.io.OnErrorAction;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,6 +16,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
+@SuppressWarnings("ALL")
 public class Request {
 
     // Successful codes
@@ -26,9 +28,9 @@ public class Request {
     public static final int CODE_NOT_ALLOWED = 403;
     public static final int CODE_VALIDATION_ERROR = 422;
     // API URL
-    private static String basicURL = "https://api2.hiveos.farm/api/v2/";
+    private static final String basicURL = "https://api2.hiveos.farm/api/v2/";
 
-    private static HttpClient httpClient = HttpClientBuilder.create().build();
+    private static final HttpClient httpClient = HttpClientBuilder.create().build();
 
     public static int sendAuthentication(String login, String password, String code){
         try {
@@ -54,7 +56,6 @@ public class Request {
             JSONObject body = (JSONObject) parse;
 
             Account.setAccessToken((String) body.get("access_token"));
-            System.out.print(HTTP_CODE_RESPONSE);
             response.close();
 
             return HTTP_CODE_RESPONSE;
@@ -64,18 +65,14 @@ public class Request {
         }
     }
 
-    public static int Logout(){
+    public static void Logout(){
         try {
 
             HttpPost request = new HttpPost(basicURL + "auth/logout");
             request.setHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
             CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
-
-            int CODE_STATUS = response.getStatusLine().getStatusCode();
             response.close();
-
-            return CODE_STATUS;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -98,7 +95,7 @@ public class Request {
         }
     }
 
-    public static void getAccount(){
+    public static Object getAccount(){
         try {
             HttpGet request = new HttpGet(basicURL + "account");
             request.setHeader("content-type", "application/json");
@@ -107,7 +104,11 @@ public class Request {
 
             HttpEntity entity = response.getEntity();
             String result = EntityUtils.toString(entity);
+
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
             response.close();
+
+            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
 
             Object parse = new JSONParser().parse(result);
             JSONObject main_info = (JSONObject) parse;
@@ -117,20 +118,20 @@ public class Request {
             Account.setName((String) profile.get("name"));
             Account.setEmail((String) profile.get("email"));
             Account.setTracking_id((String) main_info.get("tracking_id"));
+            Account.setIp_address((String) main_info.get("ip"));
 
             Account.setBalance((Long) main_info.get("balance"));
-            Account.setUser_id((Long) main_info.get("user_id"));
 
             Account.setEmail_confirm((boolean) main_info.get("email_confirmed"));
             Account.setCode_enabled((boolean) main_info.get("2fa_enabled"));
-
+            return true;
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void getFarms(){
+    public static Object getFarms(){
         try {
             HttpGet request = new HttpGet(basicURL + "farms");
             request.setHeader("content-type", "application/json");
@@ -140,13 +141,17 @@ public class Request {
             // Get body entity
             HttpEntity entity = response.getEntity();
             String result = EntityUtils.toString(entity);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
             response.close();
+
+            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
 
             // Get all farms
             Object parse = new JSONParser().parse(result);
             JSONObject farm = (JSONObject) parse;
             JSONArray farms = (JSONArray) farm.get("data");
             Farm.setFarms(farms);
+            return true;
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);

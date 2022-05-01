@@ -1,9 +1,11 @@
 package com.example.crypto.controllers;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import com.example.crypto.WindowPage;
 import com.example.crypto.methods.Account;
+import com.example.crypto.methods.Farm;
 import com.example.crypto.methods.Request;
 import com.example.crypto.methods.Settings;
 import javafx.fxml.FXML;
@@ -48,6 +50,9 @@ public class Authentication {
 
     @FXML
     void initialize() {
+
+        if(Settings.getSettingRemember()) eventChangeText();
+
         eventMouseOnEntered();
         eventMouseOnExited();
         eventMouseOnClicked();
@@ -101,7 +106,7 @@ public class Authentication {
             Request.getFarms();
 
             Stage stage = (Stage) btnAuth.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Главная", "farms.fxml", 950, 665);
+            WindowPage.updateWindow(stage, "Фермы", "farms.fxml", 950, 665);
         });
     }
 
@@ -113,5 +118,11 @@ public class Authentication {
                 fieldPassword.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: black"));
         field2FA.textProperty().addListener((observableValue, oldValue, newValue) ->
                 field2FA.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: black"));
+    }
+
+    @FXML
+    public void eventChangeText(){
+        fieldLogin.setText(Settings.getSettingLogin());
+        fieldPassword.setText(Settings.getSettingPassword());
     }
 }

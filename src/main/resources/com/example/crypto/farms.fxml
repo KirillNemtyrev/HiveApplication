@@ -10,9 +10,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Farms">
    <children>
-      <ImageView fx:id="fieldImage" fitHeight="55.0" fitWidth="49.0" layoutX="7.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fieldImage" fitHeight="45.0" fitWidth="49.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@image/farm.png" />
+            <Image url="@image/bee.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
