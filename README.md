@@ -1,5 +1,5 @@
 # Приложение для использования сервисом [HiveOS](https://the.hiveos.farm/)
-## _Версия API 2.1-beta_
+## _Версия API [2.1-beta](https://app.swaggerhub.com/apis/HiveOS/public/2.1-beta#/)_
 ### Для работы скачать Java FX, далее экспортировать библиотеку
 > File → Project Structure → Libraries
 ### Далее добавить VM Options для запуска
