@@ -5,6 +5,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -117,11 +118,14 @@ public class Request {
             Account.setLogin((String) profile.get("login"));
             Account.setName((String) profile.get("name"));
             Account.setEmail((String) profile.get("email"));
+            Account.setPhone((String) profile.get("phone"));
+            Account.setSkype((String) profile.get("skype"));
+            Account.setTelegram((String) profile.get("telegram"));
+            Account.setCompany((String) profile.get("company_info"));
+
             Account.setTracking_id((String) main_info.get("tracking_id"));
             Account.setIp_address((String) main_info.get("ip"));
-
             Account.setBalance((Long) main_info.get("balance"));
-
             Account.setEmail_confirm((boolean) main_info.get("email_confirmed"));
             Account.setCode_enabled((boolean) main_info.get("2fa_enabled"));
             return true;
@@ -169,6 +173,26 @@ public class Request {
             StringEntity payload = new StringEntity(params.toString());
 
             HttpPost request = new HttpPost(basicURL + "farms");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.setEntity(payload);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int updateProfile(JSONObject params){
+        try {
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPatch request = new HttpPatch(basicURL + "/account/profile");
             request.setHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
             request.setEntity(payload);

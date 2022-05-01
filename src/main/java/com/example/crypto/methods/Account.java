@@ -9,6 +9,10 @@ public class Account {
     private static String name;
     private static String email;
     private static String access_token;
+    private static String phone;
+    private static String skype;
+    private static String telegram;
+    private static String company;
 
     private static boolean email_confirm;
     private static boolean code_enabled;
@@ -83,5 +87,37 @@ public class Account {
 
     public static void setCode_enabled(boolean actually) {
         code_enabled = actually;
+    }
+
+    public static String getPhone() {
+        return phone;
+    }
+
+    public static void setPhone(String phone) {
+        Account.phone = phone;
+    }
+
+    public static String getSkype() {
+        return skype;
+    }
+
+    public static void setSkype(String skype) {
+        Account.skype = skype;
+    }
+
+    public static String getTelegram() {
+        return telegram;
+    }
+
+    public static void setTelegram(String telegram) {
+        Account.telegram = telegram;
+    }
+
+    public static String getCompany() {
+        return company;
+    }
+
+    public static void setCompany(String company) {
+        Account.company = company;
     }
 }

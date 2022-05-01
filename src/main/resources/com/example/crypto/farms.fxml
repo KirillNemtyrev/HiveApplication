@@ -51,7 +51,7 @@
                <children>
                   <Label fx:id="fieldFarms" layoutX="14.0" layoutY="5.0" text="0" textFill="#c3c3c3">
                      <font>
-                        <Font name="Georgia Bold" size="16.0" />
+                        <Font name="Consolas Bold" size="17.0" />
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="28.0" text="ФЕРМЫ" textFill="GREY">

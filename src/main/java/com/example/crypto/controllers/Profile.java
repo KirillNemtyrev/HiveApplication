@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
@@ -20,13 +21,13 @@ import java.util.Date;
 public class Profile {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+    private Button btn2FA;
 
     @FXML
     private Label btnAccount;
+
+    @FXML
+    private Button btnChangeEmail;
 
     @FXML
     private Label btnChangeUser;
@@ -50,10 +51,7 @@ public class Profile {
     private Button btnUpdate;
 
     @FXML
-    private Button btnSupport;
-
-    @FXML
-    private Label field2FA;
+    private Label fieldAddFerm;
 
     @FXML
     private Label fieldBalance;
@@ -62,13 +60,13 @@ public class Profile {
     private TextField fieldChangeEmail;
 
     @FXML
-    private TextField fieldChangeLogin;
-
-    @FXML
     private TextField fieldChangeName;
 
     @FXML
-    private TextField fieldConfirmPassword;
+    private TextArea fieldCompany;
+
+    @FXML
+    private TextField fieldConfirmPass;
 
     @FXML
     private Label fieldEmailConfirm;
@@ -89,13 +87,25 @@ public class Profile {
     private Label fieldName;
 
     @FXML
-    private TextField fieldNewPassword;
+    private TextField fieldNewPass;
 
     @FXML
-    private TextField fieldOldPassword;
+    private TextField fieldOldPass;
+
+    @FXML
+    private TextField fieldPhone;
+
+    @FXML
+    private TextField fieldSkype;
+
+    @FXML
+    private TextField fieldTelegram;
 
     @FXML
     private TextField fieldTrack;
+
+    @FXML
+    private Label labelSuccessful;
 
     @FXML
     void initialize() {
@@ -123,8 +133,10 @@ public class Profile {
 
         btnUpdate.setOnMouseEntered(event ->
                 btnUpdate.setStyle("-fx-background-color: #8d949a"));
-        btnSupport.setOnMouseEntered(event ->
-                btnSupport.setStyle("-fx-background-color: #8d949a"));
+        btnChangeEmail.setOnMouseEntered(event ->
+                btnChangeEmail.setStyle("-fx-background-color: #8d949a"));
+        btn2FA.setOnMouseEntered(event ->
+                btn2FA.setStyle("-fx-background-color: #8d949a"));
         btnDelete.setOnMouseEntered(event ->
                 btnDelete.setStyle("-fx-background-color: #6b2f2f"));
     }
@@ -148,8 +160,10 @@ public class Profile {
 
         btnUpdate.setOnMouseExited(event ->
                 btnUpdate.setStyle("-fx-background-color: #c6ccd2"));
-        btnSupport.setOnMouseExited(event ->
-                btnSupport.setStyle("-fx-background-color: #c6ccd2"));
+        btnChangeEmail.setOnMouseExited(event ->
+                btnChangeEmail.setStyle("-fx-background-color: #c6ccd2"));
+        btn2FA.setOnMouseExited(event ->
+                btn2FA.setStyle("-fx-background-color: #c6ccd2"));
         btnDelete.setOnMouseExited(event ->
                 btnDelete.setStyle("-fx-background-color: #943e3e"));
     }
@@ -180,6 +194,10 @@ public class Profile {
 
             System.exit(0);
         });
+
+        btnUpdate.setOnAction(actionEvent -> {
+            labelSuccessful.setVisible(true);
+        });
     }
 
     @FXML
@@ -197,7 +215,6 @@ public class Profile {
         fieldIP.setText(Account.getIp_address());
         fieldTrack.setText(Account.getTracking_id());
 
-        fieldChangeLogin.setText(Account.getLogin());
         fieldChangeName.setText(Account.getName());
         fieldChangeEmail.setText(Account.getEmail());
 
@@ -206,9 +223,12 @@ public class Profile {
         fieldEmailConfirm.setText(email_confirm);
         fieldEmailConfirm.setTextFill(color_email);
 
-        Paint color_2fa = Paint.valueOf( Account.isCode_enabled() ? "#28d172" : "#d32727" );
-        field2FA.setTextFill(color_2fa);
+        String text_2fa = Account.isCode_enabled() ? "Выключить" : "Включить";
+        btn2FA.setText(text_2fa);
 
-
+        fieldPhone.setText(Account.getPhone());
+        fieldSkype.setText(Account.getSkype());
+        fieldTelegram.setText(Account.getTelegram());
+        fieldCompany.setText(Account.getCompany());
     }
 }

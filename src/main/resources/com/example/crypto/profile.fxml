@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Profile">
+   <children>
+      <ImageView fx:id="fieldImage" fitHeight="45.0" fitWidth="49.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/bee.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="63.0" layoutY="-8.0" prefHeight="45.0" prefWidth="107.0" text="HiveOS" textFill="#f8f5f5">
+         <font>
+            <Font name="Consolas Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="fieldName" layoutX="63.0" layoutY="26.0" prefHeight="22.0" prefWidth="399.0" text="Доброе утро, KirillNemtyrev!" textFill="GREY">
+         <font>
+            <Font name="Franklin Gothic Medium Italic" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Label>
+      <AnchorPane layoutY="53.0" prefHeight="83.0" prefWidth="950.0" style="-fx-background-color: #363d45;">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label fx:id="fieldBalance" layoutX="12.0" layoutY="5.0" text="\$ 15151.2" textFill="#afeb65">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="12.0" layoutY="26.0" text="ВАШИ СРЕДСТВА" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="167.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label fx:id="fieldFarms" layoutX="14.0" layoutY="5.0" text="0" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="28.0" text="ФЕРМЫ" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Label fx:id="fieldAddFerm" layoutX="756.0" layoutY="178.0" prefHeight="18.0" prefWidth="168.0" text="СОЗДАТЬ НОВУЮ ФЕРМУ" textFill="GREY" visible="false">
+         <font>
+            <Font name="Consolas Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="7.0" layoutY="624.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/github.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <AnchorPane layoutX="415.0" layoutY="10.0" prefHeight="34.0" prefWidth="521.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
+         <children>
+            <Label fx:id="btnFarm" layoutX="14.0" layoutY="8.0" text="ФЕРМЫ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <AnchorPane layoutX="76.0" layoutY="25.0" prefHeight="3.0" prefWidth="63.0" style="-fx-background-color: silver;" />
+            <Label fx:id="btnAccount" layoutX="76.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="АККАУНТ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnReferals" layoutX="152.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="РЕФЕРАЛ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnPayment" layoutX="227.0" layoutY="8.0" prefHeight="18.0" prefWidth="76.0" text="КОШЕЛЬКИ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnChangeUser" layoutX="314.0" layoutY="8.0" prefHeight="18.0" prefWidth="138.0" text="СМЕНИТЬ АККАУНТ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnSignOut" layoutX="463.0" layoutY="8.0" prefHeight="18.0" prefWidth="49.0" text="ВЫЙТИ" textFill="#943e3e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="fieldChangeName" focusTraversable="false" layoutX="36.0" layoutY="228.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="fieldEmailConfirm" layoutX="57.0" layoutY="333.0" prefHeight="19.0" prefWidth="226.0" text="ваш e-mail адрес неподстверждён" textFill="#c3c3c3">
+         <font>
+            <Font name="Consolas Bold Italic" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Label>
+      <Label layoutX="42.0" layoutY="260.0" text="E-Mail Адрес" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="206.0" text="Полное имя" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldChangeEmail" editable="false" focusTraversable="false" layoutX="36.0" layoutY="282.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <AnchorPane layoutX="471.0" layoutY="198.0" prefHeight="437.0" prefWidth="2.0" style="-fx-background-color: #363d45;" />
+      <TextField fx:id="fieldPhone" focusTraversable="false" layoutX="532.0" layoutY="228.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldSkype" focusTraversable="false" layoutX="533.0" layoutY="282.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldTelegram" focusTraversable="false" layoutX="533.0" layoutY="338.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="541.0" layoutY="206.0" text="Телефон" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="541.0" layoutY="260.0" text="Skype" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="538.0" layoutY="316.0" text="Telegram" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="541.0" layoutY="382.0" text="Информация" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="559.0" layoutY="513.0" prefHeight="26.0" prefWidth="192.0" text="Двухфакторная аутенфикация" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldOldPass" focusTraversable="false" layoutX="36.0" layoutY="403.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="38.0" layoutY="382.0" text="Старый пароль" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldNewPass" focusTraversable="false" layoutX="36.0" layoutY="459.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="42.0" layoutY="442.0" text="Новый пароль" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldConfirmPass" focusTraversable="false" layoutX="36.0" layoutY="513.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="42.0" layoutY="496.0" text="Подтвердите новый пароль" textFill="GREY">
+         <font>
+            <Font name="Consolas" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn2FA" alignment="CENTER" layoutX="779.0" layoutY="513.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: c6ccd2;" text="Выключить">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="576.0" layoutY="557.0" prefHeight="26.0" prefWidth="146.0" text="Удалить мой аккаунт" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnDelete" alignment="CENTER" layoutX="737.0" layoutY="557.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #943e3e;" text="Удалить" textFill="WHITE">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="fieldIP" alignment="CENTER_RIGHT" editable="false" focusTraversable="false" layoutX="798.0" layoutY="628.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #22262b; -fx-text-inner-color: grey;" text="192,192,192,192">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldTrack" alignment="CENTER_RIGHT" editable="false" focusTraversable="false" layoutX="645.0" layoutY="136.0" prefHeight="27.0" prefWidth="302.0" style="-fx-background-color: #22262b; -fx-text-inner-color: grey;" text="b2a67c4d-1daf-42ac-b651-529c962647df">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnUpdate" alignment="CENTER" layoutX="305.0" layoutY="557.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: c6ccd2;" text="Сохранить">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="38.0" layoutY="152.0" text="Основные настройки аккаунта" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="19.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="37.0" layoutY="184.0" prefHeight="3.0" prefWidth="869.0" style="-fx-background-color: #363d45;" />
+      <Label fx:id="labelSuccessful" layoutX="96.0" layoutY="558.0" prefHeight="26.0" prefWidth="168.0" text="Информация обновлена!" textFill="#948e8e" visible="false">
+         <font>
+            <Font name="Consolas Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnChangeEmail" alignment="CENTER" layoutX="305.0" layoutY="329.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: c6ccd2;" text="Изменить">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextArea fx:id="fieldCompany" focusTraversable="false" layoutX="532.0" layoutY="404.0" prefHeight="90.0" prefWidth="371.0" style="-fx-control-inner-background: #1d2125; -fx-text-inner-color: #c3c3c3;" wrapText="true">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
+         </font></TextArea>
+   </children>
+</AnchorPane>
