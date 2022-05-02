@@ -5,7 +5,7 @@
 ### Далее добавить VM Options для запуска
 > Run → Edit configurations → VM Options
 ### Параметры VM Options
-```sh--module-path "Путь к JavaFX\lib" --add-modules javafx.controls,javafx.fxml>```
+```--module-path "Путь к JavaFX\lib" --add-modules javafx.controls,javafx.fxml>```
 # Собрать exe файл
 ## Утилита Launch4j
 ### Создаём *artifact*
@@ -14,5 +14,5 @@
 > Build → Build Project (Ctrl + F9)
 ### После в Launch4j указываем путь к JAR файлу
 ### И добавляем VM Options
-```sh--module-path "Путь к JavaFX\lib" --add-modules javafx.controls,javafx.fxml>```
+```--module-path "Путь к JavaFX\lib" --add-modules javafx.controls,javafx.fxml>```
 # Готово
