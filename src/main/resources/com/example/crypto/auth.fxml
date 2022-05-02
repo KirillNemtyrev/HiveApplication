@@ -11,21 +11,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Authentication">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="678.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Authentication">
    <children>
-      <AnchorPane layoutX="170.0" layoutY="37.0" prefHeight="326.0" prefWidth="260.0" style="-fx-background-color: LavenderBlush; -fx-background-radius: 20px;">
+      <AnchorPane layoutX="209.0" layoutY="31.0" prefHeight="415.0" prefWidth="260.0" style="-fx-background-color: LavenderBlush;">
          <children>
-            <TextField fx:id="fieldLogin" focusTraversable="false" layoutX="48.0" layoutY="87.0" prefHeight="28.0" prefWidth="165.0" promptText="ЛОГИН" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
+            <TextField fx:id="fieldLogin" focusTraversable="false" layoutX="31.0" layoutY="108.0" prefHeight="30.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
                <font>
-                  <Font name="Consolas Bold Italic" size="16.0" />
+                  <Font name="Consolas" size="16.0" />
                </font>
             </TextField>
-            <Label layoutX="105.0" layoutY="43.0" prefHeight="15.0" prefWidth="97.0" text="Авторизация">
+            <Label layoutX="117.0" layoutY="43.0" prefHeight="15.0" prefWidth="97.0" text="Авторизация">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
             </Label>
-            <ImageView fx:id="fieldImage" fitHeight="58.0" fitWidth="59.0" layoutX="19.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="fieldImage" fitHeight="58.0" fitWidth="59.0" layoutX="28.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/bee.png" />
                </image>
@@ -33,25 +33,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="78.0" layoutY="7.0" text="Hive OS" textFill="#221f1f">
+            <Label layoutX="89.0" layoutY="7.0" text="HiveOS" textFill="#221f1f">
                <font>
                   <Font name="Consolas Bold" size="39.0" />
                </font>
             </Label>
-            <Button fx:id="btnAuth" layoutX="49.0" layoutY="263.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" style="-fx-background-color: LavenderBlush; -fx-border-color: black;" text="ВХОД">
+            <Button fx:id="btnAuth" layoutX="49.0" layoutY="338.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" style="-fx-background-color: LavenderBlush; -fx-border-color: black;" text="ВХОД">
                <font>
-                  <Font name="Consolas Bold Italic" size="18.0" />
+                  <Font name="Consolas Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <CheckBox fx:id="fieldSave" layoutX="73.0" layoutY="238.0" mnemonicParsing="false" text="Запомнить?">
+            <CheckBox fx:id="fieldSave" layoutX="82.0" layoutY="305.0" mnemonicParsing="false" text="Запомнить?">
                <font>
-                  <Font name="Georgia Bold Italic" size="13.0" />
+                  <Font name="Consolas Bold Italic" size="13.0" />
                </font>
             </CheckBox>
-            <Label fx:id="fieldRecovery" layoutX="65.0" layoutY="305.0" text="Не могу вспомнить..." textFill="GREY">
+            <Label fx:id="fieldRecovery" layoutX="67.0" layoutY="201.0" text="Восстановить пароль" textFill="GREY">
                <font>
                   <Font name="Consolas Bold Italic" size="12.0" />
                </font>
@@ -59,23 +59,42 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TextField fx:id="field2FA" focusTraversable="false" layoutX="48.0" layoutY="193.0" prefHeight="34.0" prefWidth="165.0" promptText="КОД" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
+            <TextField fx:id="field2FA" focusTraversable="false" layoutX="31.0" layoutY="259.0" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="fieldPassword" focusTraversable="false" layoutX="48.0" layoutY="124.0" prefHeight="28.0" prefWidth="165.0" promptText="ПАРОЛЬ" style="-fx-background-color: #c6ccd2; -fx-border-color: black;">
+            <PasswordField fx:id="fieldPassword" focusTraversable="false" layoutX="31.0" layoutY="157.0" prefHeight="30.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
             </PasswordField>
-            <Label layoutX="48.0" layoutY="175.0" prefHeight="18.0" prefWidth="156.0" text="Если включен 2FA">
+            <Label layoutX="38.0" layoutY="241.0" prefHeight="18.0" prefWidth="58.0" text="Код 2FA" textFill="GREY">
                <font>
-                  <Font name="Consolas Bold" size="16.0" />
+                  <Font name="Consolas Bold" size="13.0" />
                </font>
             </Label>
+            <Label layoutX="35.0" layoutY="90.0" prefHeight="18.0" prefWidth="111.0" text="Логин или почта" textFill="GREY">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="138.0" prefHeight="18.0" prefWidth="46.0" text="Пароль" textFill="GREY">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="fieldCreateAccount" layoutX="57.0" layoutY="394.0" text="У меня нету аккаунта.." textFill="GREY">
+               <font>
+                  <Font name="Consolas Bold Italic" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <AnchorPane layoutX="21.0" layoutY="220.0" prefHeight="3.0" prefWidth="222.0" style="-fx-background-color: #22262b; -fx-background-radius: 1000px;" />
          </children></AnchorPane>
-      <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="7.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="14.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/github.png" />
          </image>
@@ -83,13 +102,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="142.0" layoutY="379.0" text="© Все данные хранятся только на вашем компьютере" textFill="GREY">
-         <font>
-            <Font name="Consolas Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="DISAPPEAR" />
-         </cursor>
-      </Label>
    </children>
 </AnchorPane>

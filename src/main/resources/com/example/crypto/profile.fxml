@@ -42,7 +42,7 @@
                         <Font name="Consolas Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="12.0" layoutY="26.0" text="ВАШИ СРЕДСТВА" textFill="GREY">
+                  <Label layoutX="12.0" layoutY="26.0" text="БАЛАНС" textFill="GREY">
                      <font>
                         <Font name="Consolas Bold" size="16.0" />
                      </font>
@@ -65,14 +65,6 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Label fx:id="fieldAddFerm" layoutX="756.0" layoutY="178.0" prefHeight="18.0" prefWidth="168.0" text="СОЗДАТЬ НОВУЮ ФЕРМУ" textFill="GREY" visible="false">
-         <font>
-            <Font name="Consolas Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
       <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="7.0" layoutY="624.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/github.png" />
@@ -81,59 +73,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <AnchorPane layoutX="415.0" layoutY="10.0" prefHeight="34.0" prefWidth="521.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
-         <children>
-            <Label fx:id="btnFarm" layoutX="14.0" layoutY="8.0" text="ФЕРМЫ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <AnchorPane layoutX="76.0" layoutY="25.0" prefHeight="3.0" prefWidth="63.0" style="-fx-background-color: silver;" />
-            <Label fx:id="btnAccount" layoutX="76.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="АККАУНТ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label fx:id="btnReferals" layoutX="152.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="РЕФЕРАЛ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label fx:id="btnPayment" layoutX="227.0" layoutY="8.0" prefHeight="18.0" prefWidth="76.0" text="КОШЕЛЬКИ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label fx:id="btnChangeUser" layoutX="314.0" layoutY="8.0" prefHeight="18.0" prefWidth="138.0" text="СМЕНИТЬ АККАУНТ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label fx:id="btnSignOut" layoutX="463.0" layoutY="8.0" prefHeight="18.0" prefWidth="49.0" text="ВЫЙТИ" textFill="#943e3e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-         </children>
-      </AnchorPane>
       <TextField fx:id="fieldChangeName" focusTraversable="false" layoutX="36.0" layoutY="228.0" prefHeight="27.0" prefWidth="371.0" style="-fx-background-color: #1d2125; -fx-text-inner-color: #c3c3c3; -fx-border-color: #c3c3c3;">
          <font>
             <Font name="Consolas Bold" size="14.0" />
@@ -295,5 +234,50 @@
          <font>
             <Font name="Consolas Bold" size="14.0" />
          </font></TextArea>
+      <AnchorPane layoutX="476.0" layoutY="11.0" prefHeight="34.0" prefWidth="454.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
+         <children>
+            <Label fx:id="btnMain" layoutX="14.0" layoutY="8.0" text="ГЛАВНАЯ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <AnchorPane layoutX="90.0" layoutY="25.0" prefHeight="3.0" prefWidth="62.0" style="-fx-background-color: silver;" />
+            <Label fx:id="btnAccount" layoutX="90.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="АККАУНТ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnPayment" layoutX="164.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="КОШЕЛЁК" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnChangeUser" layoutX="240.0" layoutY="8.0" prefHeight="18.0" prefWidth="138.0" text="СМЕНИТЬ-АККАУНТ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnSignOut" layoutX="391.0" layoutY="8.0" prefHeight="18.0" prefWidth="49.0" text="ВЫЙТИ" textFill="#943e3e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

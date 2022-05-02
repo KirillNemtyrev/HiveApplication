@@ -1,12 +1,13 @@
 package com.example.crypto.methods;
 
-import kotlin.io.OnErrorAction;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -14,10 +15,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
 
-@SuppressWarnings("ALL")
 public class Request {
 
     // Successful codes
@@ -190,6 +189,29 @@ public class Request {
 
     public static int updateProfile(JSONObject params){
         try {
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPatch request = new HttpPatch(basicURL + "/account/profile");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.setEntity(payload);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int updatePassword(String old_password, String new_password){
+        try {
+            JSONObject params = new JSONObject();
+            params.put("password", old_password);
+            params.put("new_password", new_password);
             StringEntity payload = new StringEntity(params.toString());
 
             HttpPatch request = new HttpPatch(basicURL + "/account/profile");

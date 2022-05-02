@@ -22,6 +22,9 @@ public class Authentication {
     private TextField field2FA;
 
     @FXML
+    private Label fieldCreateAccount;
+
+    @FXML
     private ImageView fieldGitHub;
 
     @FXML
@@ -56,12 +59,16 @@ public class Authentication {
                 btnAuth.setStyle("-fx-border-color: black; -fx-background-color: #c6ccd2"));
         fieldRecovery.setOnMouseEntered(event ->
                 fieldRecovery.setStyle("-fx-text-fill:black"));
+        fieldCreateAccount.setOnMouseEntered(mouseEvent ->
+                fieldCreateAccount.setStyle("-fx-text-fill:black"));
     }
 
     @FXML
     public void eventMouseOnExited(){
         fieldRecovery.setOnMouseExited(event ->
-                fieldRecovery.setStyle("-fx-text-fill:gray"));
+                fieldRecovery.setStyle("-fx-text-fill:grey"));
+        fieldCreateAccount.setOnMouseExited(mouseEvent ->
+                fieldCreateAccount.setStyle("-fx-text-fill:grey"));
         btnAuth.setOnMouseExited(event ->
                 btnAuth.setStyle("-fx-border-color: black; -fx-background-color: LavenderBlush"));
     }
@@ -74,6 +81,8 @@ public class Authentication {
                 WindowPage.openWebpage("https://the.hiveos.farm/restore-pass/"));
         fieldGitHub.setOnMouseClicked(mouseEvent ->
                 WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
+        fieldCreateAccount.setOnMouseClicked(mouseEvent ->
+                WindowPage.openWebpage("https://the.hiveos.farm/register/"));
         btnAuth.setOnAction(event -> {
             String login = fieldLogin.getText().trim();
             String password = fieldPassword.getText().trim();

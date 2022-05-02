@@ -14,6 +14,8 @@ module com.example.crypto {
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
     requires json.simple;
+    requires org.jsoup;
+    requires annotations;
 
     opens com.example.crypto to javafx.fxml;
     exports com.example.crypto;

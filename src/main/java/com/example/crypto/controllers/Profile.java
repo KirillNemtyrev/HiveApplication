@@ -13,8 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Profile {
 
@@ -31,25 +36,22 @@ public class Profile {
     private Label btnChangeUser;
 
     @FXML
+    private Label labelSuccessful;
+
+    @FXML
     private Button btnDelete;
 
     @FXML
-    private Label btnFarm;
+    private Label btnMain;
 
     @FXML
     private Label btnPayment;
-
-    @FXML
-    private Label btnReferals;
 
     @FXML
     private Label btnSignOut;
 
     @FXML
     private Button btnUpdate;
-
-    @FXML
-    private Label fieldAddFerm;
 
     @FXML
     private Label fieldBalance;
@@ -103,32 +105,28 @@ public class Profile {
     private TextField fieldTrack;
 
     @FXML
-    private Label labelSuccessful;
-
-    @FXML
     void initialize() {
         eventChangeText();
 
         eventMouseOnEntered();
         eventMouseOnExited();
         eventMouseOnClicked();
+
+        eventKeyOnField();
     }
 
     @FXML
     public void eventMouseOnEntered(){
-        btnFarm.setOnMouseEntered(mouseEvent ->
-                btnFarm.setTextFill(Paint.valueOf("#656060")));
+        btnMain.setOnMouseEntered(mouseEvent ->
+                btnMain.setTextFill(Paint.valueOf("#656060")));
         btnAccount.setOnMouseEntered(mouseEvent ->
                 btnAccount.setTextFill(Paint.valueOf("#656060")));
-        btnReferals.setOnMouseEntered(mouseEvent ->
-                btnReferals.setTextFill(Paint.valueOf("#656060")));
         btnPayment.setOnMouseEntered(mouseEvent ->
                 btnPayment.setTextFill(Paint.valueOf("#656060")));
         btnChangeUser.setOnMouseEntered(mouseEvent ->
                 btnChangeUser.setTextFill(Paint.valueOf("#656060")));
         btnSignOut.setOnMouseEntered(mouseEvent ->
                 btnSignOut.setTextFill(Paint.valueOf("#542323")));
-
         btnUpdate.setOnMouseEntered(event ->
                 btnUpdate.setStyle("-fx-background-color: #8d949a"));
         btnChangeEmail.setOnMouseEntered(event ->
@@ -141,12 +139,10 @@ public class Profile {
 
     @FXML
     public void eventMouseOnExited(){
-        btnFarm.setOnMouseExited(mouseEvent ->
-                btnFarm.setTextFill(Paint.valueOf("#9e9e9e")));
+        btnMain.setOnMouseExited(mouseEvent ->
+                btnMain.setTextFill(Paint.valueOf("#9e9e9e")));
         btnAccount.setOnMouseExited(mouseEvent ->
                 btnAccount.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnReferals.setOnMouseExited(mouseEvent ->
-                btnReferals.setTextFill(Paint.valueOf("#9e9e9e")));
         btnPayment.setOnMouseExited(mouseEvent ->
                 btnPayment.setTextFill(Paint.valueOf("#9e9e9e")));
         btnChangeUser.setOnMouseExited(mouseEvent ->
@@ -173,7 +169,7 @@ public class Profile {
         fieldGitHub.setOnMouseClicked(mouseEvent ->
                 WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
 
-        btnFarm.setOnMouseClicked(mouseEvent ->{
+        btnMain.setOnMouseClicked(mouseEvent ->{
             Stage stage = (Stage) btnChangeUser.getScene().getWindow();
             WindowPage.updateWindow(stage, "Фермы", "farms.fxml", 950, 665, false);
         });
@@ -183,7 +179,7 @@ public class Profile {
             Settings.saveParams();
 
             Stage stage = (Stage) btnChangeUser.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 600, 400);
+            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 469);
         });
         btnSignOut.setOnMouseClicked(mouseEvent -> {
             Request.Logout();
@@ -194,6 +190,55 @@ public class Profile {
         });
 
         btnUpdate.setOnAction(actionEvent -> {
+
+            String old_pass = fieldOldPass.getText().trim();
+            String new_pass = fieldNewPass.getText().trim();
+            String confirm_pass = fieldConfirmPass.getText().trim();
+
+            if(!old_pass.isEmpty() && (new_pass.isEmpty() || confirm_pass.isEmpty() || !new_pass.equals(confirm_pass) ||
+                    Request.updatePassword(old_pass, new_pass) != Request.CODE_AUTHENTICATED_TOKEN)){
+                fieldOldPass.setStyle("-fx-background-color: #1d2125;" +
+                        "-fx-text-inner-color: #c3c3c3;-fx-border-color: red");
+                fieldNewPass.setStyle("-fx-background-color: #1d2125;" +
+                        "-fx-text-inner-color: #c3c3c3;-fx-border-color: red");
+                fieldConfirmPass.setStyle("-fx-background-color: #1d2125;" +
+                        "-fx-text-inner-color: #c3c3c3;-fx-border-color: red");
+            }
+
+            fieldOldPass.clear();
+            fieldNewPass.clear();
+            fieldConfirmPass.clear();
+
+            JSONObject params = new JSONObject();
+            String name = fieldChangeName.getText().trim();
+            if(!name.equals(Account.getName())) params.put("name", name);
+
+            String phone = fieldPhone.getText().trim();
+            if(!phone.equals(Account.getPhone())) params.put("phone", phone);
+
+            String skype = fieldSkype.getText().trim();
+            if(!skype.equals(Account.getSkype())) params.put("skype", skype);
+
+            String telegram = fieldTelegram.getText().trim();
+            if(!telegram.equals(Account.getTelegram())) params.put("telegram", telegram);
+
+            String company = fieldCompany.getText().trim();
+            if(!company.equals(Account.getCompany())) params.put("company", company);
+
+            if(!params.isEmpty() && Request.updateProfile(params) != Request.CODE_AUTHENTICATED_TOKEN){
+                fieldChangeName.setText(Account.getName());
+                fieldPhone.setText(Account.getPhone());
+                fieldSkype.setText(Account.getSkype());
+                fieldTelegram.setText(Account.getTelegram());
+                fieldCompany.setText(Account.getCompany());
+            }
+
+            Account.setName(name);
+            Account.setPhone(phone);
+            Account.setTelegram(telegram);
+            Account.setCompany(company);
+            Account.setSkype(skype);
+
             labelSuccessful.setVisible(true);
         });
     }
@@ -228,5 +273,18 @@ public class Profile {
         fieldSkype.setText(Account.getSkype());
         fieldTelegram.setText(Account.getTelegram());
         fieldCompany.setText(Account.getCompany());
+    }
+
+    @FXML
+    public void eventKeyOnField(){
+        fieldOldPass.textProperty().addListener((observableValue, oldValue, newValue) ->
+                fieldOldPass.setStyle("-fx-background-color: #1d2125;" +
+                        "-fx-text-inner-color: #c3c3c3;-fx-border-color: #c3c3c3"));
+        fieldNewPass.textProperty().addListener((observableValue, oldValue, newValue) ->
+                fieldNewPass.setStyle("-fx-background-color: #1d2125;" +
+                        "-fx-text-inner-color: #c3c3c3;-fx-border-color: #c3c3c3"));
+        fieldConfirmPass.textProperty().addListener((observableValue, oldValue, newValue) ->
+                fieldConfirmPass.setStyle("-fx-background-color: #1d2125;" +
+                        "-fx-text-inner-color: #c3c3c3;-fx-border-color: #c3c3c3"));
     }
 }
