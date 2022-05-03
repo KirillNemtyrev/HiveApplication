@@ -1,6 +1,7 @@
 package com.example.crypto.controllers;
 
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import com.example.crypto.WindowPage;
 import com.example.crypto.methods.Account;
 import com.example.crypto.methods.Farm;
@@ -186,7 +187,10 @@ public class Farms {
         String balance = Account.getBalance() + " $";
         fieldBalance.setText(balance);
 
-        int hour = new Date().getHours();
+        // Get time
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalTime time = LocalTime.now(zoneId);
+        int hour = time.getHour();
         String welcome = (hour < 6 ? "Доброй ночи" : hour < 12 ? "Доброго утра" :
                 hour < 18 ? "Доброго дня" : "Доброго вечера") + " , " + Account.getLogin();
 
@@ -313,10 +317,6 @@ public class Farms {
         String BALANCE = money.get("balance") + " $";
         addLabel(farmPane, "CENTER_RIGHT", BALANCE, "#c3c3c3", 785.0, 32.0, 98.0,22.0);
         addLabel(farmPane, "", "БАЛАНС", "GREY", 834.0, 51.0, 53.0,18.0);
-
-        //String POWER = farm.get("hardware_power_draw") + " ВТ";
-        //addLabel(farmPane, "CENTER_RIGHT", POWER, "#c3c3c3", 736.0, 5.0, 158.0,19.0);
-
         return farmPane;
     }
 }

@@ -16,8 +16,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.ZoneId;
 
 public class MineCost {
 
@@ -187,7 +187,10 @@ public class MineCost {
         fieldBalance.setText(balance);
         fieldPower.setText(String.valueOf(ParseData.getPowerCost()));
 
-        int hour = new Date().getHours();
+        // Get time
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalTime time = LocalTime.now(zoneId);
+        int hour = time.getHour();
         String welcome = (hour < 6 ? "Доброй ночи" : hour < 12 ? "Доброго утра" :
                 hour < 18 ? "Доброго дня" : "Доброго вечера") + " , " + Account.getLogin();
 

@@ -15,11 +15,12 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.*;
 
 public class Profile {
 
@@ -189,6 +190,11 @@ public class Profile {
             System.exit(0);
         });
 
+        btnChangeEmail.setOnAction(actionEvent -> {
+            Stage stage = (Stage) btnChangeEmail.getScene().getWindow();
+            WindowPage.openModal(stage, "Смена почты", "change_email.fxml", 324, 352);
+        });
+
         btnUpdate.setOnAction(actionEvent -> {
 
             String old_pass = fieldOldPass.getText().trim();
@@ -248,7 +254,10 @@ public class Profile {
         String balance = Account.getBalance() + " $";
         fieldBalance.setText(balance);
 
-        int hour = new Date().getHours();
+        // Get time
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalTime time = LocalTime.now(zoneId);
+        int hour = time.getHour();
         String welcome = (hour < 6 ? "Доброй ночи" : hour < 12 ? "Доброго утра" :
                 hour < 18 ? "Доброго дня" : "Доброго вечера") + " , " + Account.getLogin();
 

@@ -1,21 +1,24 @@
 package com.example.crypto.methods;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHeaders;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPatch;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.AbstractHttpEntity;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Request {
 
@@ -23,10 +26,6 @@ public class Request {
     public static final int CODE_AUTHENTICATION_TOKEN = 200;
     public static final int CODE_CREATE_FARM = 201;
     public static final int CODE_AUTHENTICATED_TOKEN = 204;
-    // Client error
-    public static final int CODE_NOT_AUTHENTICATED = 401;
-    public static final int CODE_NOT_ALLOWED = 403;
-    public static final int CODE_VALIDATION_ERROR = 422;
     // API URL
     private static final String basicURL = "https://api2.hiveos.farm/api/v2/";
 
@@ -192,9 +191,10 @@ public class Request {
             StringEntity payload = new StringEntity(params.toString());
 
             HttpPatch request = new HttpPatch(basicURL + "/account/profile");
-            request.setHeader("content-type", "application/json");
+            request.setHeader("Content-Type", "application/json");
             request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
             request.setEntity(payload);
+
             CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
 
             int CODE_STATUS = response.getStatusLine().getStatusCode();
@@ -214,13 +214,78 @@ public class Request {
             params.put("new_password", new_password);
             StringEntity payload = new StringEntity(params.toString());
 
-            HttpPatch request = new HttpPatch(basicURL + "/account/profile");
+            HttpPut request = new HttpPut(basicURL + "/account/profile");
             request.setHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
             request.setEntity(payload);
             CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
 
             int CODE_STATUS = response.getStatusLine().getStatusCode();
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            System.out.println(result);
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int updateEmail(String email, String twofa_code){
+        try {
+            // Details for post
+            JSONObject params = new JSONObject();
+            params.put("name", "Huesos");
+            params.put("email", email);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPatch request = new HttpPatch(basicURL + "/account/profile");
+            request.setHeader("Content-Type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.addHeader("X-Security-Code", twofa_code);
+            request.setEntity(payload);
+
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            System.out.println(CODE_STATUS);
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            if(entity != null) {
+                String result = EntityUtils.toString(entity);
+                System.out.println(result);
+            }
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int sendEmailcode(String login){
+        try {
+            // Details for post
+            JSONObject params = new JSONObject();
+            params.put("login", login);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPost request = new HttpPost(basicURL + "account/email/confirmation");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.setEntity(payload);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            System.out.println(CODE_STATUS);
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            System.out.println(result);
             response.close();
 
             return CODE_STATUS;

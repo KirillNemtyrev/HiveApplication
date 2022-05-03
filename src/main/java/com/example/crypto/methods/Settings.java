@@ -27,7 +27,7 @@ public class Settings {
             SettingLogin = props.getProperty("LOGIN");
             SettingPassword = props.getProperty("PASSWORD");
             SettingToken = props.getProperty("TOKEN");
-            SettingRemember = Boolean.valueOf(props.getProperty("REMEMBER"));
+            SettingRemember = Boolean.parseBoolean(props.getProperty("REMEMBER"));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -36,7 +36,6 @@ public class Settings {
 
     public static void saveParams(){
         try {
-            if(!file.isFile()) file.createNewFile();
             FileWriter writer = new FileWriter(file.getPath());
 
             String temp = "LOGIN = " + (SettingRemember ? SettingLogin : "")  + "\n";
