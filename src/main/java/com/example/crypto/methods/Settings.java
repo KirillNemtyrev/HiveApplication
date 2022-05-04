@@ -16,10 +16,7 @@ public class Settings {
 
     public static void getParams(){
         try {
-            if(!file.isFile()) {
-                saveParams();
-                return;
-            }
+            if(!file.isFile()) saveParams();
 
             Properties props = new Properties();
             props.load(new FileInputStream(file));
@@ -36,6 +33,8 @@ public class Settings {
 
     public static void saveParams(){
         try {
+            if(!file.createNewFile()) return;
+
             FileWriter writer = new FileWriter(file.getPath());
 
             String temp = "LOGIN = " + (SettingRemember ? SettingLogin : "")  + "\n";

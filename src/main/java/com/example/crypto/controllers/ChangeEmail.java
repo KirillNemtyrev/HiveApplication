@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
@@ -27,6 +28,9 @@ public class ChangeEmail {
     private Button btnChange;
 
     @FXML
+    private TextField field2FA;
+
+    @FXML
     private TextField fieldCode;
 
     @FXML
@@ -37,6 +41,12 @@ public class ChangeEmail {
 
     @FXML
     private Label fieldSendEmail;
+
+    @FXML
+    private AnchorPane paneGood;
+
+    @FXML
+    private Label textAction;
 
     @FXML
     void initialize() {
@@ -71,16 +81,32 @@ public class ChangeEmail {
                 WindowPage.openWebpage("https://hiveon.com/"));
         fieldSendEmail.setOnMouseClicked(mouseEvent -> {
             String email = fieldEmail.getText().trim();
-            String code = fieldCode.getText().trim();
+            String code = field2FA.getText().trim();
 
             if(email.isEmpty() || !validate(email) || Request.updateEmail(email, code) != Request.CODE_AUTHENTICATED_TOKEN){
                 fieldEmail.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: red");
                 return;
             }
 
-            //Account.setEmail(email);
-            //Account.setEmail_confirm(false);
+            paneGood.setStyle("-fx-background-color: #086123");
+            textAction.setText("Код бы отправлен вам на почту, если его нет возможно подойдет и недавно отправленый");
+        });
+
+        btnChange.setOnAction(event -> {
+            String email = fieldEmail.getText().trim();
+            String code = fieldCode.getText().trim();
+
             //Request.sendEmailcode(Account.getLogin());
+            if(email.isEmpty() || code.isEmpty() || Request.setupEmail(email, code) != Request.CODE_AUTHENTICATED_TOKEN){
+                fieldEmail.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: red");
+                paneGood.setStyle("-fx-background-color: red");
+                return;
+            }
+
+            Request.getAccount();
+            Stage stage = (Stage) btnChange.getScene().getWindow();
+            WindowPage.updateWindow((Stage) stage.getOwner(), "Аккаунт", "profile.fxml", 950, 665, false);
+            stage.close();
         });
     }
 

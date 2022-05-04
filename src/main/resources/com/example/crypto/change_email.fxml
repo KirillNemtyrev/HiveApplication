@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="324.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.ChangeEmail">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="324.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.ChangeEmail">
    <children>
-      <AnchorPane layoutX="31.0" layoutY="26.0" prefHeight="299.0" prefWidth="260.0" style="-fx-background-color: LavenderBlush;">
+      <AnchorPane layoutX="31.0" layoutY="26.0" prefHeight="318.0" prefWidth="260.0" style="-fx-background-color: LavenderBlush;">
          <children>
-            <TextField fx:id="fieldEmail" focusTraversable="false" layoutX="31.0" layoutY="101.0" prefHeight="30.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
+            <TextField fx:id="fieldEmail" focusTraversable="false" layoutX="32.0" layoutY="83.0" prefHeight="30.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
                <font>
                   <Font name="Consolas" size="16.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Font name="Consolas Bold" size="39.0" />
                </font>
             </Label>
-            <Button fx:id="btnChange" layoutX="48.0" layoutY="240.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" style="-fx-background-color: LavenderBlush; -fx-border-color: black;" text="Сменить">
+            <Button fx:id="btnChange" layoutX="48.0" layoutY="268.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" style="-fx-background-color: LavenderBlush; -fx-border-color: black;" text="Сменить">
                <font>
                   <Font name="Consolas Bold" size="18.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="fieldSendEmail" layoutX="33.0" layoutY="131.0" prefHeight="14.0" prefWidth="129.0" text="Запросить код" textFill="GREY">
+            <Label fx:id="fieldSendEmail" alignment="CENTER_RIGHT" layoutX="101.0" layoutY="175.0" prefHeight="14.0" prefWidth="129.0" text="Запросить код" textFill="GREY">
                <font>
                   <Font name="Consolas Bold Italic" size="12.0" />
                </font>
@@ -52,22 +52,37 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TextField fx:id="fieldCode" focusTraversable="false" layoutX="31.0" layoutY="191.0" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
+            <TextField fx:id="field2FA" focusTraversable="false" layoutX="32.0" layoutY="133.0" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
             </TextField>
-            <Label layoutX="34.0" layoutY="171.0" prefHeight="18.0" prefWidth="58.0" text="Код" textFill="GREY">
+            <Label layoutX="34.0" layoutY="113.0" prefHeight="18.0" prefWidth="58.0" text="Код 2FA" textFill="GREY">
                <font>
                   <Font name="Consolas Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="83.0" prefHeight="18.0" prefWidth="111.0" text="Новая почта" textFill="GREY">
+            <Label layoutX="34.0" layoutY="65.0" prefHeight="18.0" prefWidth="111.0" text="Новая почта" textFill="GREY">
                <font>
                   <Font name="Consolas Bold" size="13.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="19.0" layoutY="160.0" prefHeight="3.0" prefWidth="222.0" style="-fx-background-color: #22262b; -fx-background-radius: 1000px;" />
+            <AnchorPane fx:id="paneGood" layoutX="19.0" layoutY="189.0" prefHeight="3.0" prefWidth="222.0" style="-fx-background-color: #22262b;" />
+            <TextField fx:id="fieldCode" focusTraversable="false" layoutX="31.0" layoutY="221.0" prefHeight="30.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="34.0" layoutY="203.0" prefHeight="18.0" prefWidth="184.0" text="Код подтверждения с почты" textFill="GREY">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
+      <Label fx:id="textAction" alignment="CENTER" layoutX="28.0" layoutY="349.0" prefHeight="58.0" prefWidth="260.0" text="Введите новый адрес почты, если включён 2FA то введите код, нажмите запросить, код придёт на новую почту" textAlignment="CENTER" textFill="GREY" wrapText="true">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

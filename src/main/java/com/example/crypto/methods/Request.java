@@ -238,7 +238,6 @@ public class Request {
         try {
             // Details for post
             JSONObject params = new JSONObject();
-            params.put("name", "Huesos");
             params.put("email", email);
             StringEntity payload = new StringEntity(params.toString());
 
@@ -286,6 +285,39 @@ public class Request {
             HttpEntity entity = response.getEntity();
             String result = EntityUtils.toString(entity);
             System.out.println(result);
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int setupEmail(String email, String code){
+        try {
+            // Details for post
+            JSONObject params = new JSONObject();
+            params.put("email_code", code);
+            params.put("email", email);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPost request = new HttpPost(basicURL + "/account/email/confirm");
+            request.setHeader("Content-Type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            //request.addHeader("X-Security-Code", twofa_code);
+            request.setEntity(payload);
+
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            System.out.println(CODE_STATUS);
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            if(entity != null) {
+                String result = EntityUtils.toString(entity);
+                System.out.println(result);
+            }
             response.close();
 
             return CODE_STATUS;

@@ -132,8 +132,10 @@ public class Profile {
                 btnUpdate.setStyle("-fx-background-color: #8d949a"));
         btnChangeEmail.setOnMouseEntered(event ->
                 btnChangeEmail.setStyle("-fx-background-color: #8d949a"));
-        btn2FA.setOnMouseEntered(event ->
-                btn2FA.setStyle("-fx-background-color: #8d949a"));
+        btn2FA.setOnMouseEntered(event -> {
+            String color_2fa = Account.isCode_enabled() ? "#6b2f2f" : "#054003";
+            btn2FA.setStyle("-fx-background-color: " + color_2fa);
+        });
         btnDelete.setOnMouseEntered(event ->
                 btnDelete.setStyle("-fx-background-color: #6b2f2f"));
     }
@@ -157,8 +159,10 @@ public class Profile {
                 btnUpdate.setStyle("-fx-background-color: #c6ccd2"));
         btnChangeEmail.setOnMouseExited(event ->
                 btnChangeEmail.setStyle("-fx-background-color: #c6ccd2"));
-        btn2FA.setOnMouseExited(event ->
-                btn2FA.setStyle("-fx-background-color: #c6ccd2"));
+        btn2FA.setOnMouseExited(event -> {
+            String color_2fa = Account.isCode_enabled() ? "#943e3e" : "#0b6e09";
+            btn2FA.setStyle("-fx-background-color: " + color_2fa);
+        });
         btnDelete.setOnMouseExited(event ->
                 btnDelete.setStyle("-fx-background-color: #943e3e"));
     }
@@ -192,7 +196,7 @@ public class Profile {
 
         btnChangeEmail.setOnAction(actionEvent -> {
             Stage stage = (Stage) btnChangeEmail.getScene().getWindow();
-            WindowPage.openModal(stage, "Смена почты", "change_email.fxml", 324, 352);
+            WindowPage.openModal(stage, "Смена почты", "change_email.fxml", 324, 424);
         });
 
         btnUpdate.setOnAction(actionEvent -> {
@@ -270,13 +274,15 @@ public class Profile {
         fieldChangeName.setText(Account.getName());
         fieldChangeEmail.setText(Account.getEmail());
 
-        String email_confirm = "ваш e-mail адрес " + (Account.isEmail_confirm() ? "подтверждён" : "неподстверждён");
+        String email_confirm = "ваш e-mail адрес " + (Account.isEmail_confirm() ? "подтверждён" : "неподтверждён");
         Paint color_email = Paint.valueOf( Account.isEmail_confirm() ? "#28d172" : "#d32727" );
         fieldEmailConfirm.setText(email_confirm);
         fieldEmailConfirm.setTextFill(color_email);
 
         String text_2fa = Account.isCode_enabled() ? "Выключить" : "Включить";
+        String color_2fa = Account.isCode_enabled() ? "#943e3e" : "#0b6e09"; // #054003
         btn2FA.setText(text_2fa);
+        btn2FA.setStyle("-fx-background-color: " + color_2fa);
 
         fieldPhone.setText(Account.getPhone());
         fieldSkype.setText(Account.getSkype());
