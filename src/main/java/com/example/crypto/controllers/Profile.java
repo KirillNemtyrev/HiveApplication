@@ -184,7 +184,7 @@ public class Profile {
             Settings.saveParams();
 
             Stage stage = (Stage) btnChangeUser.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 469);
+            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 505);
         });
         btnSignOut.setOnMouseClicked(mouseEvent -> {
             Request.Logout();
@@ -197,6 +197,23 @@ public class Profile {
         btnChangeEmail.setOnAction(actionEvent -> {
             Stage stage = (Stage) btnChangeEmail.getScene().getWindow();
             WindowPage.openModal(stage, "Смена почты", "change_email.fxml", 324, 424);
+        });
+
+        btn2FA.setOnAction(event -> {
+            Stage stage = (Stage) btn2FA.getScene().getWindow();
+
+            if(Account.isCode_enabled()) {
+                WindowPage.openModal(stage, "Отключить 2FA", "disable2fa.fxml", 324, 290);
+                return;
+            }
+
+            Request.generateSecret();
+            WindowPage.openModal(stage, "Включить 2FA", "enable2fa.fxml", 324, 678);
+        });
+
+        btnDelete.setOnAction(event -> {
+            Stage stage = (Stage) btnChangeEmail.getScene().getWindow();
+            WindowPage.openModal(stage, "Удаление аккаунта", "delete_account.fxml", 324, 465);
         });
 
         btnUpdate.setOnAction(actionEvent -> {

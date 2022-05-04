@@ -13,6 +13,8 @@ public class Account {
     private static String skype;
     private static String telegram;
     private static String company;
+    private static String secret;
+    private static String qr_code;
 
     private static boolean email_confirm;
     private static boolean code_enabled;
@@ -119,5 +121,21 @@ public class Account {
 
     public static void setCompany(String company) {
         Account.company = company;
+    }
+
+    public static String getSecret() {
+        return secret;
+    }
+
+    public static void setSecret(String secret) {
+        Account.secret = secret;
+    }
+
+    public static String getQr_code() {
+        return qr_code;
+    }
+
+    public static void setQr_code(String qr_code) {
+        Account.qr_code = qr_code;
     }
 }

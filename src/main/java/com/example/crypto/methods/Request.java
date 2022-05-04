@@ -36,7 +36,7 @@ public class Request {
             JSONObject params = new JSONObject();
             params.put("login", login);
             params.put("password", password);
-            params.put("twofa_code", code);
+            if(!code.isEmpty()) params.put("twofa_code", code);
             params.put("remember", true);
             StringEntity payload = new StringEntity(params.toString());
 
@@ -60,6 +60,27 @@ public class Request {
             return HTTP_CODE_RESPONSE;
 
         } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int sendCode(String login){
+        try {
+            JSONObject params = new JSONObject();
+            params.put("login", login);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPost request = new HttpPost(basicURL + "auth/login/confirmation");
+            request.setHeader("content-type", "application/json");
+            request.setEntity(payload);
+
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return HTTP_CODE_RESPONSE;
+
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -221,10 +242,6 @@ public class Request {
             CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
 
             int CODE_STATUS = response.getStatusLine().getStatusCode();
-            // Get body entity
-            HttpEntity entity = response.getEntity();
-            String result = EntityUtils.toString(entity);
-            System.out.println(result);
             response.close();
 
             return CODE_STATUS;
@@ -250,41 +267,6 @@ public class Request {
             CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
 
             int CODE_STATUS = response.getStatusLine().getStatusCode();
-            System.out.println(CODE_STATUS);
-            // Get body entity
-            HttpEntity entity = response.getEntity();
-            if(entity != null) {
-                String result = EntityUtils.toString(entity);
-                System.out.println(result);
-            }
-            response.close();
-
-            return CODE_STATUS;
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static int sendEmailcode(String login){
-        try {
-            // Details for post
-            JSONObject params = new JSONObject();
-            params.put("login", login);
-            StringEntity payload = new StringEntity(params.toString());
-
-            HttpPost request = new HttpPost(basicURL + "account/email/confirmation");
-            request.setHeader("content-type", "application/json");
-            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
-            request.setEntity(payload);
-            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
-
-            int CODE_STATUS = response.getStatusLine().getStatusCode();
-            System.out.println(CODE_STATUS);
-            // Get body entity
-            HttpEntity entity = response.getEntity();
-            String result = EntityUtils.toString(entity);
-            System.out.println(result);
             response.close();
 
             return CODE_STATUS;
@@ -296,7 +278,6 @@ public class Request {
 
     public static int setupEmail(String email, String code){
         try {
-            // Details for post
             JSONObject params = new JSONObject();
             params.put("email_code", code);
             params.put("email", email);
@@ -305,19 +286,103 @@ public class Request {
             HttpPost request = new HttpPost(basicURL + "/account/email/confirm");
             request.setHeader("Content-Type", "application/json");
             request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
-            //request.addHeader("X-Security-Code", twofa_code);
             request.setEntity(payload);
 
             CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
 
             int CODE_STATUS = response.getStatusLine().getStatusCode();
-            System.out.println(CODE_STATUS);
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int delete2FA(String code){
+        try {
+            HttpDelete request = new HttpDelete(basicURL + "/account/twofa");
+            request.setHeader("Content-Type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.addHeader("X-Security-Code", code);
+
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    ///account/twofa/secret
+    public static Object generateSecret(){
+        try {
+            HttpGet request = new HttpGet(basicURL + "/account/twofa/secret");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
             // Get body entity
             HttpEntity entity = response.getEntity();
-            if(entity != null) {
-                String result = EntityUtils.toString(entity);
-                System.out.println(result);
-            }
+            String result = EntityUtils.toString(entity);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+            response.close();
+
+            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
+
+            // Get all farms
+            Object parse = new JSONParser().parse(result);
+            JSONObject info = (JSONObject) parse;
+
+            Account.setSecret((String) info.get("secret"));
+            Account.setQr_code((String) info.get("qr_code_url"));
+            return true;
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int enable2FA(String code, String code_email){
+        try {
+            // Details for post
+            JSONObject params = new JSONObject();
+            params.put("secret", Account.getSecret());
+            params.put("twofa_code", code);
+            StringEntity payload = new StringEntity(params.toString());
+
+            HttpPost request = new HttpPost(basicURL + "account/twofa");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.addHeader("X-Security-Code", code_email);
+            request.setEntity(payload);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
+            response.close();
+
+            return CODE_STATUS;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int deleteAccount(String code){
+        try {
+            HttpDelete request = new HttpDelete(basicURL + "/account");
+            request.setHeader("Content-Type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            request.addHeader("X-Security-Code", code);
+
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            int CODE_STATUS = response.getStatusLine().getStatusCode();
             response.close();
 
             return CODE_STATUS;

@@ -167,7 +167,7 @@ public class Farms {
             Settings.saveParams();
 
             Stage stage = (Stage) btnChangeUser.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 469);
+            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 505);
         });
         btnSignOut.setOnMouseClicked(mouseEvent -> {
             Request.Logout();

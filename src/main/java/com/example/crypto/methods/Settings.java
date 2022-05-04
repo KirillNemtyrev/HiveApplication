@@ -33,13 +33,13 @@ public class Settings {
 
     public static void saveParams(){
         try {
-            if(!file.createNewFile()) return;
+            if(!file.createNewFile()) System.out.println("File is created..");
 
             FileWriter writer = new FileWriter(file.getPath());
 
             String temp = "LOGIN = " + (SettingRemember ? SettingLogin : "")  + "\n";
             temp += "PASSWORD = " + (SettingRemember ? SettingPassword : "")  + "\n";
-            temp += "TOKEN = " + SettingToken  + "\n";
+            temp += "TOKEN = " + (SettingRemember ? SettingToken : "") + "\n";
             temp += "REMEMBER = " + SettingRemember;
 
             writer.write(temp);

@@ -43,6 +43,12 @@ public class Authentication {
     private TextField fieldLogin;
 
     @FXML
+    private Label fieldSendCode;
+
+    @FXML
+    private Label textSendCode;
+
+    @FXML
     void initialize() {
 
         if(Settings.getSettingRemember()) eventChangeText();
@@ -61,10 +67,14 @@ public class Authentication {
                 fieldRecovery.setStyle("-fx-text-fill:black"));
         fieldCreateAccount.setOnMouseEntered(mouseEvent ->
                 fieldCreateAccount.setStyle("-fx-text-fill:black"));
+        fieldSendCode.setOnMouseEntered(mouseEvent ->
+                fieldSendCode.setStyle("-fx-text-fill:black"));
     }
 
     @FXML
     public void eventMouseOnExited(){
+        fieldSendCode.setOnMouseExited(event ->
+                fieldSendCode.setStyle("-fx-text-fill:grey"));
         fieldRecovery.setOnMouseExited(event ->
                 fieldRecovery.setStyle("-fx-text-fill:grey"));
         fieldCreateAccount.setOnMouseExited(mouseEvent ->
@@ -83,6 +93,16 @@ public class Authentication {
                 WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
         fieldCreateAccount.setOnMouseClicked(mouseEvent ->
                 WindowPage.openWebpage("https://the.hiveos.farm/register/"));
+        fieldSendCode.setOnMouseClicked(event -> {
+
+            String login = fieldLogin.getText().trim();
+            if(login.isEmpty() || Request.sendCode(login) != Request.CODE_AUTHENTICATION_TOKEN){
+                fieldLogin.setStyle("-fx-background-color: #c6ccd2; -fx-border-color: red");
+                return;
+            }
+            textSendCode.setVisible(true);
+            fieldSendCode.setStyle("-fx-text-fill:green");
+        });
         btnAuth.setOnAction(event -> {
             String login = fieldLogin.getText().trim();
             String password = fieldPassword.getText().trim();

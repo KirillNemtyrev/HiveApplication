@@ -18,13 +18,13 @@ public class StartApplication extends Application {
 
             Account.setAccessToken(AccessToken);
             if(Request.getAccount() == null || Request.getFarms() == null){
-                WindowPage.open("Авторизация", "auth.fxml", 678, 469);
+                WindowPage.open("Авторизация", "auth.fxml", 678, 505);
                 return;
             }
             WindowPage.open("Главная", "farms.fxml", 950, 665);
             return;
         }
-        WindowPage.open("Авторизация", "auth.fxml", 678, 469);
+        WindowPage.open("Авторизация", "auth.fxml", 678, 505);
     }
 
     public static void main(String[] args) {

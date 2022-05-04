@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="678.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Authentication">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="678.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.Authentication">
    <children>
       <AnchorPane layoutX="209.0" layoutY="31.0" prefHeight="415.0" prefWidth="260.0" style="-fx-background-color: LavenderBlush;">
          <children>
@@ -38,7 +38,7 @@
                   <Font name="Consolas Bold" size="39.0" />
                </font>
             </Label>
-            <Button fx:id="btnAuth" layoutX="49.0" layoutY="338.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" style="-fx-background-color: LavenderBlush; -fx-border-color: black;" text="ВХОД">
+            <Button fx:id="btnAuth" layoutX="48.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" style="-fx-background-color: LavenderBlush; -fx-border-color: black;" text="ВХОД">
                <font>
                   <Font name="Consolas Bold" size="18.0" />
                </font>
@@ -46,7 +46,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <CheckBox fx:id="fieldSave" layoutX="82.0" layoutY="305.0" mnemonicParsing="false" text="Запомнить?">
+            <CheckBox fx:id="fieldSave" layoutX="82.0" layoutY="319.0" mnemonicParsing="false" text="Запомнить?">
                <font>
                   <Font name="Consolas Bold Italic" size="13.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TextField fx:id="field2FA" focusTraversable="false" layoutX="31.0" layoutY="259.0" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
+            <TextField fx:id="field2FA" focusTraversable="false" layoutX="31.0" layoutY="273.0" prefHeight="34.0" prefWidth="198.0" style="-fx-background-color: #c6ccd2; -fx-border-color: black; -fx-text-inner-color: #22262b;">
                <font>
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Font name="Consolas Bold Italic" size="16.0" />
                </font>
             </PasswordField>
-            <Label layoutX="38.0" layoutY="241.0" prefHeight="18.0" prefWidth="58.0" text="Код 2FA" textFill="GREY">
+            <Label layoutX="38.0" layoutY="255.0" prefHeight="18.0" prefWidth="58.0" text="Код 2FA" textFill="GREY">
                <font>
                   <Font name="Consolas Bold" size="13.0" />
                </font>
@@ -93,8 +93,21 @@
                </cursor>
             </Label>
             <AnchorPane layoutX="21.0" layoutY="220.0" prefHeight="3.0" prefWidth="222.0" style="-fx-background-color: #22262b; -fx-background-radius: 1000px;" />
+            <Label fx:id="fieldSendCode" layoutX="142.0" layoutY="223.0" prefHeight="18.0" prefWidth="103.0" text="Запросить код" textFill="GREY">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="textSendCode" layoutX="66.0" layoutY="72.0" prefHeight="18.0" prefWidth="129.0" text="Код был отправлен!" visible="false">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
-      <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="14.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="14.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/github.png" />
          </image>
@@ -102,5 +115,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="fieldCreateAccount1" layoutX="116.0" layoutY="465.0" prefHeight="30.0" prefWidth="446.0" text="Если у вас не включена двухэтапная защита, нажмите 'Запросить код', после введите его в поле 'Код 2FA', перед этим введя свой логин." textAlignment="CENTER" textFill="GREY" wrapText="true">
+         <font>
+            <Font name="Consolas Bold Italic" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
    </children>
 </AnchorPane>
