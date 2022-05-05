@@ -3,10 +3,7 @@ package com.example.crypto.controllers;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import com.example.crypto.WindowPage;
-import com.example.crypto.methods.Account;
-import com.example.crypto.methods.Farm;
-import com.example.crypto.methods.Request;
-import com.example.crypto.methods.Settings;
+import com.example.crypto.methods.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -238,7 +235,7 @@ public class Farms {
     }
 
     @FXML
-    public AnchorPane createPane(double posX, double posY) {
+    public AnchorPane createPane(double posX, double posY, String farmId) {
 
         AnchorPane ListPane = new AnchorPane();
         ListPane.setLayoutX(posX);
@@ -250,6 +247,12 @@ public class Farms {
 
         ListPane.setOnMouseEntered(event -> ListPane.setStyle("-fx-background-color: #192128"));
         ListPane.setOnMouseExited(event -> ListPane.setStyle("-fx-background-color: #2f353c"));
+        ListPane.setOnMouseClicked(event ->{
+            Request.getFarmID(farmId);
+            Request.getWorkers(farmId);
+
+            WindowPage.updateWindow(WindowPage.getPrimaryStage(), "Воркеры", "workers.fxml", 950, 665, false);
+        });
 
         return ListPane;
     }
@@ -277,10 +280,11 @@ public class Farms {
         JSONObject money = (JSONObject) farm.get("money");
         JSONObject stats = (JSONObject) farm.get("stats");
 
-        AnchorPane farmPane = createPane(posX, posY);
+        AnchorPane farmPane = createPane(posX, posY, String.valueOf(farm.get("id")));
 
         String NAME = String.valueOf(farm.get("name"));
-        addLabel(farmPane, "", NAME, "#c3c3c3", 9.0, 5.0, 508.0,19.0);
+        String COLOR_NAME = String.valueOf(farm.get("trusted")).equals("true") ? "#afeb65" : "#c3c3c3";
+        addLabel(farmPane, "", NAME, COLOR_NAME, 9.0, 5.0, 508.0,19.0);
 
         String Workers = String.valueOf(stats.get("workers_online"));
         addLabel(farmPane, "", Workers, "#c3c3c3", 13.0, 32.0, 49.0,19.0);

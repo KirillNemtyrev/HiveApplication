@@ -391,4 +391,67 @@ public class Request {
             throw new RuntimeException(e);
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static Object getFarmID(String farmId){
+        try {
+            HttpGet request = new HttpGet(basicURL + "/farms/" + farmId);
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+            response.close();
+
+            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
+
+            // Get all farms
+            Object parse = new JSONParser().parse(result);
+            JSONObject info = (JSONObject) parse;
+            JSONObject stats = (JSONObject) info.get("stats");
+            JSONObject money = (JSONObject) info.get("money");
+
+            Farm.setCurrentFarm(farmId);
+            Farm.setCurrentFarmName((String) info.get("name"));
+            Farm.setCurrentFarmRole((String) info.get("role"));
+            Farm.setCountGPU(stats.get("gpus_online") + "/" + stats.get("gpus_total"));
+            Farm.setCountRIGS(stats.get("rigs_online") + "/" + stats.get("rigs_total"));
+            Farm.setPowerFarm(stats.get("power_draw") + " kW");
+            Farm.setBalanceFarm((Double) money.get("balance"));
+            return info;
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Object getWorkers(String farmId){
+        try {
+            HttpGet request = new HttpGet(basicURL + "/farms/" + farmId + "/workers");
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+            response.close();
+
+            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
+
+            // Get all farms
+            Object parse = new JSONParser().parse(result);
+            JSONObject info = (JSONObject) parse;
+
+            Workers.setCurrentWorkers((JSONArray) info.get("data"));
+            return info;
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -13,10 +13,12 @@ import java.net.URISyntaxException;
 public class WindowPage {
 
     private static Scene scene;
+    private static Stage primaryStage;
 
     public static void open(String name, String file, double weight, double height){
         try {
             Stage stage = new Stage();
+            primaryStage = stage;
             FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource(file));
             scene = new Scene(fxmlLoader.load(), weight, height);
             stage.setResizable(false);
@@ -39,6 +41,7 @@ public class WindowPage {
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(stageOwner);
+            primaryStage = stageOwner;
             stage.show();
         } catch (IOException e){
             throw new RuntimeException(e);
@@ -52,6 +55,7 @@ public class WindowPage {
     public static void updateWindow(Stage stage, String name, String file, double weight, double height, boolean hide){
         try {
             if (hide) stage.hide();
+            primaryStage = stage;
             FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource(file));
             scene = new Scene(fxmlLoader.load(), weight, height);
             stage.setTitle(name);
@@ -71,5 +75,9 @@ public class WindowPage {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
