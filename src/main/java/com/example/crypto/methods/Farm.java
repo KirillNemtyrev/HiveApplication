@@ -84,4 +84,8 @@ public class Farm {
     public static void setBalanceFarm(double balanceFarm) {
         BalanceFarm = balanceFarm;
     }
+
+    public static String getCurrentFarmID() {
+        return CurrentFarmID;
+    }
 }

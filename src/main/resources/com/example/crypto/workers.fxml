@@ -34,7 +34,7 @@
       </Label>
       <AnchorPane layoutY="53.0" prefHeight="83.0" prefWidth="950.0" style="-fx-background-color: #363d45;">
          <children>
-            <AnchorPane layoutX="15.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+            <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
                <children>
                   <Label fx:id="fieldWorkers" layoutX="12.0" layoutY="5.0" text="0" textFill="#c3c3c3">
                      <font>
@@ -62,7 +62,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="320.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+            <AnchorPane layoutX="330.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
                <children>
                   <Label fx:id="fieldRIGS" layoutX="14.0" layoutY="5.0" prefHeight="21.0" prefWidth="91.0" text="0" textFill="#c3c3c3">
                      <font>
@@ -76,7 +76,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="475.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+            <AnchorPane layoutX="487.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
                <children>
                   <Label fx:id="fieldPower" layoutX="14.0" layoutY="5.0" prefHeight="21.0" prefWidth="91.0" text="0" textFill="#374879">
                      <font>
@@ -90,7 +90,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="798.0" layoutY="14.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+            <AnchorPane layoutX="798.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
                <children>
                   <Label fx:id="fieldBalance" layoutX="14.0" layoutY="5.0" prefHeight="21.0" prefWidth="91.0" text="0" textFill="#afeb65">
                      <font>
@@ -98,6 +98,20 @@
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="28.0" text="БАЛАНС ФЕРМЫ" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="643.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label layoutX="14.0" layoutY="28.0" text="ВАША РОЛЬ" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fieldRole" layoutX="14.0" layoutY="5.0" prefHeight="22.0" prefWidth="107.0" text="РОЛЬ" textFill="#b97777">
                      <font>
                         <Font name="Consolas Bold" size="16.0" />
                      </font>
@@ -119,11 +133,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="fieldRole" alignment="CENTER_RIGHT" layoutX="616.0" layoutY="181.0" prefHeight="22.0" prefWidth="300.0" text="TECH" textFill="GREY">
-         <font>
-            <Font name="Consolas Bold" size="16.0" />
-         </font>
-      </Label>
       <AnchorPane layoutX="476.0" layoutY="11.0" prefHeight="34.0" prefWidth="454.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
          <children>
             <Label fx:id="btnMain" layoutX="14.0" layoutY="8.0" text="ГЛАВНАЯ" textFill="#9e9e9e">
@@ -168,7 +177,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="24.0" layoutY="147.0" prefHeight="34.0" prefWidth="903.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
+      <AnchorPane layoutX="118.0" layoutY="144.0" prefHeight="34.0" prefWidth="714.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
          <children>
             <Label fx:id="btnWorkers" layoutX="14.0" layoutY="8.0" text="ВОРКЕРЫ" textFill="#9e9e9e">
                <font>
@@ -178,7 +187,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnStatistic" layoutX="85.0" layoutY="8.0" prefHeight="18.0" prefWidth="91.0" text="СТАТИСТИКА" textFill="#9e9e9e">
+            <Label fx:id="btnEnergy" layoutX="91.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ЭЛЕКТРОЭНЕРГИЯ" textFill="#9e9e9e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
@@ -186,7 +195,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnEnergy" layoutX="183.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ЭЛЕКТРОЭНЕРГИЯ" textFill="#9e9e9e">
+            <Label fx:id="btnExitForFarm" layoutX="577.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ПОКИНУТЬ-ФЕРМУ" textFill="#943e3e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
@@ -194,7 +203,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnExitForFarm" layoutX="763.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ПОКИНУТЬ-ФЕРМУ" textFill="#943e3e">
+            <Label fx:id="btnAccess" layoutX="223.0" layoutY="8.0" prefHeight="18.0" prefWidth="53.0" text="ДОСТУП" textFill="#9e9e9e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
@@ -202,7 +211,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnAccess" layoutX="315.0" layoutY="8.0" prefHeight="18.0" prefWidth="53.0" text="ДОСТУП" textFill="#9e9e9e">
+            <Label fx:id="btnTransferFarm" layoutX="291.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ПЕРЕДАТЬ-ФЕРМУ" textFill="#9e9e9e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
@@ -210,15 +219,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="btnTransferFarm" layoutX="377.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ПЕРЕДАТЬ-ФЕРМУ" textFill="#9e9e9e">
-               <font>
-                  <Font name="Consolas Bold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label fx:id="btnTransferMoney" layoutX="509.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ПЕРЕДАТЬ-ДЕНЬГИ" textFill="#9e9e9e">
+            <Label fx:id="btnTransferMoney" layoutX="430.0" layoutY="8.0" prefHeight="18.0" prefWidth="132.0" text="ПЕРЕДАТЬ-ДЕНЬГИ" textFill="#9e9e9e">
                <font>
                   <Font name="Consolas Bold" size="16.0" />
                </font>
@@ -246,6 +247,31 @@
       <Label fx:id="fieldNameFarm" alignment="CENTER_RIGHT" layoutX="630.0" layoutY="630.0" prefHeight="22.0" prefWidth="300.0" text="Наименование фермы" textFill="GREY">
          <font>
             <Font name="Consolas Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="185.0" prefHeight="17.0" prefWidth="147.0" text="Наименование воркера" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="185.0" prefHeight="17.0" prefWidth="62.0" text="Алгоритм" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="185.0" prefHeight="17.0" prefWidth="80.0" text="Монета(-ы)" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="818.0" layoutY="185.0" prefHeight="17.0" prefWidth="27.0" text="FAN" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="864.0" layoutY="185.0" prefHeight="17.0" prefWidth="63.0" text="Мощность" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
          </font>
       </Label>
    </children>

@@ -1,7 +1,5 @@
 package com.example.crypto.controllers;
 
-import java.time.LocalTime;
-import java.time.ZoneId;
 import com.example.crypto.WindowPage;
 import com.example.crypto.methods.*;
 import javafx.fxml.FXML;
@@ -17,25 +15,22 @@ import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class FarmCurrent {
+import java.time.LocalTime;
+import java.time.ZoneId;
+
+public class WorkerCurrent {
 
     @FXML
     private Pagination PageCount;
 
     @FXML
-    private Label btnAccess;
-
-    @FXML
     private Label btnAccount;
 
     @FXML
+    private Label btnBack;
+
+    @FXML
     private Label btnChangeUser;
-
-    @FXML
-    private Label btnEnergy;
-
-    @FXML
-    private Label btnExitForFarm;
 
     @FXML
     private Label btnMain;
@@ -47,19 +42,13 @@ public class FarmCurrent {
     private Label btnSignOut;
 
     @FXML
-    private Label btnTransferFarm;
+    private Label fieldAmd;
 
     @FXML
-    private Label btnTransferMoney;
+    private Label fieldCPU;
 
     @FXML
-    private Label btnWorkers;
-
-    @FXML
-    private Label fieldBalance;
-
-    @FXML
-    private Label fieldGPU;
+    private Label fieldDP;
 
     @FXML
     private ImageView fieldGitHub;
@@ -68,22 +57,25 @@ public class FarmCurrent {
     private ImageView fieldImage;
 
     @FXML
+    private Label fieldMemFree;
+
+    @FXML
     private Label fieldName;
 
     @FXML
     private Label fieldNameFarm;
 
     @FXML
+    private Label fieldNvidia;
+
+    @FXML
     private Label fieldPower;
 
     @FXML
-    private Label fieldRIGS;
+    private Label fieldUpdate;
 
     @FXML
-    private Label fieldRole;
-
-    @FXML
-    private Label fieldWorkers;
+    private Label fieldVersion;
 
     @FXML
     void initialize() {
@@ -93,11 +85,13 @@ public class FarmCurrent {
         eventMouseOnExited();
         eventMouseOnClicked();
 
-        initWorkers();
+        //initWorker();
     }
 
     @FXML
     public void eventMouseOnEntered() {
+        btnBack.setOnMouseEntered(mouseEvent ->
+                btnBack.setTextFill(Paint.valueOf("#656060")));
         btnMain.setOnMouseEntered(mouseEvent ->
                 btnMain.setTextFill(Paint.valueOf("#656060")));
         btnAccount.setOnMouseEntered(mouseEvent ->
@@ -108,23 +102,12 @@ public class FarmCurrent {
                 btnChangeUser.setTextFill(Paint.valueOf("#656060")));
         btnSignOut.setOnMouseEntered(mouseEvent ->
                 btnSignOut.setTextFill(Paint.valueOf("#542323")));
-
-        btnWorkers.setOnMouseEntered(mouseEvent ->
-                btnWorkers.setTextFill(Paint.valueOf("#656060")));
-        btnEnergy.setOnMouseEntered(mouseEvent ->
-                btnEnergy.setTextFill(Paint.valueOf("#656060")));
-        btnAccess.setOnMouseEntered(mouseEvent ->
-                btnAccess.setTextFill(Paint.valueOf("#656060")));
-        btnTransferFarm.setOnMouseEntered(mouseEvent ->
-                btnTransferFarm.setTextFill(Paint.valueOf("#656060")));
-        btnTransferMoney.setOnMouseEntered(mouseEvent ->
-                btnTransferMoney.setTextFill(Paint.valueOf("#656060")));
-        btnExitForFarm.setOnMouseEntered(mouseEvent ->
-                btnExitForFarm.setTextFill(Paint.valueOf("#542323")));
     }
 
     @FXML
     public void eventMouseOnExited() {
+        btnBack.setOnMouseExited(mouseEvent ->
+                btnBack.setTextFill(Paint.valueOf("#9e9e9e")));
         btnMain.setOnMouseExited(mouseEvent ->
                 btnMain.setTextFill(Paint.valueOf("#9e9e9e")));
         btnAccount.setOnMouseExited(mouseEvent ->
@@ -137,19 +120,6 @@ public class FarmCurrent {
                 btnChangeUser.setTextFill(Paint.valueOf("#9e9e9e")));
         btnSignOut.setOnMouseExited(mouseEvent ->
                 btnSignOut.setTextFill(Paint.valueOf("#943e3e")));
-
-        btnWorkers.setOnMouseExited(mouseEvent ->
-                btnWorkers.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnEnergy.setOnMouseExited(mouseEvent ->
-                btnEnergy.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnAccess.setOnMouseExited(mouseEvent ->
-                btnAccess.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnTransferFarm.setOnMouseExited(mouseEvent ->
-                btnTransferFarm.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnTransferMoney.setOnMouseExited(mouseEvent ->
-                btnTransferMoney.setTextFill(Paint.valueOf("#9e9e9e")));
-        btnExitForFarm.setOnMouseExited(mouseEvent ->
-                btnExitForFarm.setTextFill(Paint.valueOf("#943e3e")));
     }
 
     @FXML
@@ -175,6 +145,12 @@ public class FarmCurrent {
             Stage stage = (Stage) btnChangeUser.getScene().getWindow();
             WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 505);
         });
+        btnBack.setOnMouseClicked(event -> {
+            Request.getFarmID(Farm.getCurrentFarmID());
+            Request.getWorkers(Farm.getCurrentFarmID());
+
+            WindowPage.updateWindow(WindowPage.getPrimaryStage(), "Воркеры", "workers.fxml", 950, 665, false);
+        });
         btnSignOut.setOnMouseClicked(mouseEvent -> {
             Request.Logout();
             Settings.setSettingToken(null);
@@ -186,14 +162,17 @@ public class FarmCurrent {
 
     @FXML
     public void eventChangeText() {
-        fieldBalance.setText(Farm.getBalanceFarm() + " $");
-        fieldWorkers.setText(String.valueOf(Workers.getCountWorkers()));
-        fieldGPU.setText(Farm.getCountGPU());
-        fieldRIGS.setText(Farm.getCountRIGS());
         fieldPower.setText(Farm.getPowerFarm());
-
         fieldNameFarm.setText(Farm.getCurrentFarmName());
-        fieldRole.setText(Farm.getCurrentFarmRole().toUpperCase());
+
+        fieldCPU.setText(Workers.getCpuTemp());
+        fieldDP.setText(Workers.getHaveDF());
+        fieldMemFree.setText(String.format("%8.1f", Workers.getFreeMem()).replace(",", ".").trim() + "G");
+        fieldPower.setText(Workers.getPower() + " W");
+        fieldVersion.setText(Workers.getHiveVersion());
+        fieldUpdate.setVisible(Workers.getNeed_upgrade());
+        fieldNvidia.setText(Workers.getNvidiaVersion());
+        fieldAmd.setText(Workers.getAmdVersion());
 
         // Get time
         ZoneId zoneId = ZoneId.systemDefault();
@@ -206,7 +185,7 @@ public class FarmCurrent {
     }
 
     @FXML
-    public void initWorkers() {
+    public void initWorker() {
         PageCount.setVisible(true);
         PageCount.setPageCount((int) Math.ceil((double) Workers.getCountWorkers() / 13.0));
 
@@ -254,11 +233,6 @@ public class FarmCurrent {
 
         ListPane.setOnMouseEntered(event -> ListPane.setStyle("-fx-background-color: #192128"));
         ListPane.setOnMouseExited(event -> ListPane.setStyle("-fx-background-color: #2f353c"));
-        ListPane.setOnMouseClicked(event -> {
-            JSONObject worker = Workers.getCurrentWorker(index);
-            Request.getWorkerID(Farm.getCurrentFarmID(), (Long) worker.get("id"));
-            WindowPage.updateWindow(WindowPage.getPrimaryStage(), "Воркеры", "worker.fxml", 950, 665, false);
-        });
         return ListPane;
     }
 
@@ -292,7 +266,7 @@ public class FarmCurrent {
         String POWER = "⚡ " + stats.get("power_draw") + " w";
         addLabel(workerPane, "CENTER_RIGHT", POWER, "#686565", 834, 3.0, 62, 17, 14, "Consolas");
 
-        String FAN_AMOUNT = getFan(gpu_stats) + "%";
+        String FAN_AMOUNT = "%";
         addLabel(workerPane, "CENTER_RIGHT", FAN_AMOUNT, "#c3c3c3", 786, 3.0, 36, 18, 16, "Consolas Bold");
 
         JSONObject autofan = (JSONObject) worker.get("autofan");
@@ -317,13 +291,4 @@ public class FarmCurrent {
         return workerPane;
     }
 
-    public long getFan(JSONArray object) {
-        long max = 0;
-        for (Object o : object) {
-            JSONObject data = (JSONObject) o;
-            long current = (Long) data.get("fan");
-            if (current > max) max = current;
-        }
-        return max;
-    }
 }

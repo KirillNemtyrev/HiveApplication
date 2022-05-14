@@ -1,24 +1,17 @@
 package com.example.crypto.methods;
 
+import com.example.crypto.WindowPage;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Request {
 
@@ -365,6 +358,7 @@ public class Request {
 
             int CODE_STATUS = response.getStatusLine().getStatusCode();
             response.close();
+            System.out.println(CODE_STATUS);
 
             return CODE_STATUS;
 
@@ -393,7 +387,7 @@ public class Request {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public static Object getFarmID(String farmId){
+    public static void getFarmID(String farmId){
         try {
             HttpGet request = new HttpGet(basicURL + "/farms/" + farmId);
             request.setHeader("content-type", "application/json");
@@ -405,8 +399,6 @@ public class Request {
             String result = EntityUtils.toString(entity);
             int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
             response.close();
-
-            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
 
             // Get all farms
             Object parse = new JSONParser().parse(result);
@@ -421,14 +413,13 @@ public class Request {
             Farm.setCountRIGS(stats.get("rigs_online") + "/" + stats.get("rigs_total"));
             Farm.setPowerFarm(stats.get("power_draw") + " kW");
             Farm.setBalanceFarm((Double) money.get("balance"));
-            return info;
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static Object getWorkers(String farmId){
+    public static void getWorkers(String farmId){
         try {
             HttpGet request = new HttpGet(basicURL + "/farms/" + farmId + "/workers");
             request.setHeader("content-type", "application/json");
@@ -441,14 +432,50 @@ public class Request {
             int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
             response.close();
 
-            if (HTTP_CODE_RESPONSE != Request.CODE_AUTHENTICATION_TOKEN) return null;
-
             // Get all farms
             Object parse = new JSONParser().parse(result);
             JSONObject info = (JSONObject) parse;
 
+            JSONArray geting = (JSONArray) info.get("data");
             Workers.setCurrentWorkers((JSONArray) info.get("data"));
-            return info;
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void getWorkerID(String farmId, Long workerId){
+        try {
+            HttpGet request = new HttpGet(basicURL + "/farms/" + farmId + "/workers/" + workerId);
+            request.setHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + Account.getAccessToken());
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(request);
+
+            // Get body entity
+            HttpEntity entity = response.getEntity();
+            String result = EntityUtils.toString(entity);
+            int HTTP_CODE_RESPONSE = response.getStatusLine().getStatusCode();
+            response.close();
+
+            Object parse = new JSONParser().parse(result);
+
+            JSONObject info = (JSONObject) parse;
+            JSONObject hardware_stats = (JSONObject) info.get("hardware_stats");
+            JSONObject memory = (JSONObject) hardware_stats.get("memory");
+            JSONObject stats = (JSONObject) info.get("stats");
+            JSONObject versions = (JSONObject) info.get("versions");
+            JSONArray cpu = (JSONArray) hardware_stats.get("cputemp");
+
+            Workers.setHaveDF((String) hardware_stats.get("df"));
+            Workers.setFreeMem((double) ((Long) memory.get("free") / 1024.0));
+            Workers.setCpuTemp(cpu.get(0) + "°C");
+            Workers.setPower((Long) stats.get("power_draw"));
+
+            Workers.setHiveVersion((String) versions.get("hive"));
+            Workers.setNvidiaVersion((String) versions.get("nvidia_driver"));
+            Workers.setAmdVersion((String) versions.get("amd_driver"));
+
+            Workers.setNeed_upgrade((Boolean) info.get("needs_upgrade"));
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);

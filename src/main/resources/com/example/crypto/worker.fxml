@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="950.0" style="-fx-background-color: #22262b;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.controllers.WorkerCurrent">
+   <children>
+      <ImageView fx:id="fieldImage" fitHeight="45.0" fitWidth="49.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/bee.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="63.0" layoutY="-8.0" prefHeight="45.0" prefWidth="107.0" text="HiveOS" textFill="#f8f5f5">
+         <font>
+            <Font name="Consolas Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="fieldName" layoutX="63.0" layoutY="26.0" prefHeight="22.0" prefWidth="399.0" text="Доброе утро, KirillNemtyrev!" textFill="GREY">
+         <font>
+            <Font name="Franklin Gothic Medium Italic" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Label>
+      <AnchorPane layoutY="53.0" prefHeight="83.0" prefWidth="950.0" style="-fx-background-color: #363d45;">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="55.0" prefWidth="106.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label fx:id="fieldCPU" layoutX="14.0" layoutY="4.0" prefHeight="21.0" prefWidth="71.0" text="0" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="28.0" text="CPU TEMP" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="129.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label fx:id="fieldDP" layoutX="14.0" layoutY="5.0" text="0" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="28.0" text="СВОБОДНОЕ ДП" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="279.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label fx:id="fieldMemFree" layoutX="14.0" layoutY="5.0" prefHeight="21.0" prefWidth="91.0" text="0" textFill="#c3c3c3">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="28.0" text="СВОБОДНОЕ ОЗУ" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="429.0" layoutY="15.0" prefHeight="55.0" prefWidth="138.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label fx:id="fieldPower" layoutX="14.0" layoutY="5.0" prefHeight="21.0" prefWidth="91.0" text="0" textFill="#374879">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="28.0" text="МОЩНОСТЬ" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="757.0" layoutY="15.0" prefHeight="55.0" prefWidth="169.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" prefHeight="21.0" prefWidth="10.0" text="N" textFill="#3ba44f">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="28.0" prefHeight="21.0" prefWidth="10.0" text="A" textFill="#ee1818">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fieldNvidia" layoutX="30.0" layoutY="5.0" prefHeight="22.0" prefWidth="132.0" text="0.6-215@220409" textFill="#b9b48a">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fieldAmd" layoutX="30.0" layoutY="28.0" prefHeight="22.0" prefWidth="132.0" text="20.40 (5.9.0325)" textFill="#b9b48a">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="582.0" layoutY="15.0" prefHeight="55.0" prefWidth="147.0" style="-fx-background-color: #22262b;">
+               <children>
+                  <Label layoutX="14.0" layoutY="28.0" text="ОС ВЕРСИЯ" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fieldVersion" layoutX="14.0" layoutY="5.0" prefHeight="22.0" prefWidth="147.0" text="0.6-215@220409" textFill="#b9b48a">
+                     <font>
+                        <Font name="Consolas Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fieldUpdate" layoutX="103.0" layoutY="26.0" prefHeight="22.0" prefWidth="44.0" text="UPDATE" textFill="#b55e02">
+                     <font>
+                        <Font name="Consolas Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Pagination fx:id="PageCount" blendMode="SRC_ATOP" layoutX="1.0" layoutY="136.0" opacity="0.8" pageCount="999999999" prefHeight="529.0" prefWidth="950.0" style="-fx-background: black;">
+         <cursor>
+            <Cursor fx:constant="DISAPPEAR" />
+         </cursor>
+      </Pagination>
+      <ImageView fx:id="fieldGitHub" fitHeight="34.0" fitWidth="38.0" layoutX="7.0" layoutY="624.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/github.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <AnchorPane layoutX="476.0" layoutY="11.0" prefHeight="34.0" prefWidth="454.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
+         <children>
+            <Label fx:id="btnMain" layoutX="14.0" layoutY="8.0" text="ГЛАВНАЯ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnAccount" layoutX="90.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="АККАУНТ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnPayment" layoutX="164.0" layoutY="8.0" prefHeight="18.0" prefWidth="63.0" text="КОШЕЛЁК" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnChangeUser" layoutX="240.0" layoutY="8.0" prefHeight="18.0" prefWidth="138.0" text="СМЕНИТЬ-АККАУНТ" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="btnSignOut" layoutX="391.0" layoutY="8.0" prefHeight="18.0" prefWidth="49.0" text="ВЫЙТИ" textFill="#943e3e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="147.0" prefHeight="23.0" prefWidth="97.0" style="-fx-background-color: #363d45; -fx-background-radius: 80;">
+         <children>
+            <Label fx:id="btnBack" layoutX="14.0" layoutY="3.0" text="&lt;&lt; НАЗАД" textFill="#9e9e9e">
+               <font>
+                  <Font name="Consolas Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="211.0" prefHeight="412.0" prefWidth="950.0">
+         <children>
+            <AnchorPane layoutX="24.0" prefHeight="45.0" prefWidth="903.0" style="-fx-background-color: #363d45;">
+               <children>
+                  <Label layoutX="97.0" layoutY="4.0" prefHeight="21.0" prefWidth="185.0" text="Radeon RX 570" textFill="#b46fc3">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="7.0" layoutY="4.0" prefHeight="21.0" prefWidth="63.0" text="GPU 0" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="7.0" layoutY="25.0" prefHeight="21.0" prefWidth="63.0" text="0a:00.0" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="97.0" layoutY="25.0" prefHeight="21.0" prefWidth="329.0" text="Elpida EDW4032BABG · 113-57045EHB1-W90" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="261.0" layoutY="4.0" prefHeight="21.0" prefWidth="155.0" text="4096 MB · Sapphire" textFill="GREY">
+                     <font>
+                        <Font name="Consolas Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="845.0" layoutY="13.0" prefHeight="21.0" prefWidth="44.0" text="2000" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="800.0" layoutY="13.0" prefHeight="21.0" prefWidth="45.0" text="2000" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="751.0" layoutY="13.0" prefHeight="21.0" prefWidth="49.0" text="2000" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="684.0" layoutY="13.0" prefHeight="21.0" prefWidth="56.0" text="2000 w" textFill="GREY">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="629.0" layoutY="13.0" prefHeight="21.0" prefWidth="34.0" text="100%" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="557.0" layoutY="13.0" prefHeight="21.0" prefWidth="56.0" text="100 #C" textFill="#c6ccd2">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Label fx:id="fieldNameFarm" alignment="CENTER_RIGHT" layoutX="52.0" layoutY="630.0" prefHeight="22.0" prefWidth="878.0" text="Наименование фермы" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="835.0" layoutY="185.0" prefHeight="17.0" prefWidth="27.0" text="VDD" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="877.0" layoutY="185.0" prefHeight="17.0" prefWidth="27.0" text="MEM" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="772.0" layoutY="185.0" prefHeight="17.0" prefWidth="44.0" text="CLOCK" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="719.0" layoutY="185.0" prefHeight="17.0" prefWidth="44.0" text="POWER" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="666.0" layoutY="185.0" prefHeight="17.0" prefWidth="21.0" text="FAN" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="562.0" layoutY="185.0" prefHeight="17.0" prefWidth="80.0" text="Темпуратура" textFill="GREY">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

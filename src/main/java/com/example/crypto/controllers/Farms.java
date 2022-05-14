@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
@@ -145,26 +146,19 @@ public class Farms {
                 WindowPage.openWebpage("https://hiveon.com/"));
         fieldGitHub.setOnMouseClicked(mouseEvent ->
                 WindowPage.openWebpage("https://github.com/KirillNemtyrev/crypto"));
-        fieldCreateFerm.setOnMouseClicked(mouseEvent -> {
-            Stage stage = (Stage) fieldCreateFerm.getScene().getWindow();
-            WindowPage.openModal(stage, "Новая ферма", "new_ferm.fxml", 509, 400);
-        });
-        fieldAddFerm.setOnMouseClicked(mouseEvent -> {
-            Stage stage = (Stage) fieldAddFerm.getScene().getWindow();
-            WindowPage.openModal(stage, "Новая ферма", "new_ferm.fxml", 509, 400);
-        });
+        fieldCreateFerm.setOnMouseClicked(mouseEvent ->
+            WindowPage.openModal(WindowPage.getPrimaryStage(), "Новая ферма", "new_ferm.fxml", 509, 400));
+        fieldAddFerm.setOnMouseClicked(mouseEvent ->
+            WindowPage.openModal(WindowPage.getPrimaryStage(), "Новая ферма", "new_ferm.fxml", 509, 400));
 
-        btnAccount.setOnMouseClicked(mouseEvent ->{
-            Stage stage = (Stage) btnAccount.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Аккаунт", "profile.fxml", 950, 665, false);
-        });
+        btnAccount.setOnMouseClicked(mouseEvent ->
+            WindowPage.updateWindow(WindowPage.getPrimaryStage(), "Аккаунт", "profile.fxml", 950, 665, false));
         btnChangeUser.setOnMouseClicked(mouseEvent -> {
             Request.Logout();
             Settings.setSettingToken(null);
             Settings.saveParams();
 
-            Stage stage = (Stage) btnChangeUser.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Авторизация", "auth.fxml", 678, 505);
+            WindowPage.updateWindow(WindowPage.getPrimaryStage(), "Авторизация", "auth.fxml", 678, 505);
         });
         btnSignOut.setOnMouseClicked(mouseEvent -> {
             Request.Logout();
@@ -173,10 +167,8 @@ public class Farms {
 
             System.exit(0);
         });
-        btnCost.setOnMouseClicked(mouseEvent -> {
-            Stage stage = (Stage) fieldCreateFerm.getScene().getWindow();
-            WindowPage.updateWindow(stage, "Криптовалюта", "minecost.fxml", 950, 665, false);
-        });
+        btnCost.setOnMouseClicked(mouseEvent ->
+            WindowPage.updateWindow(WindowPage.getPrimaryStage(), "Криптовалюта", "minecost.fxml", 950, 665, false));
     }
 
     @FXML
@@ -248,6 +240,7 @@ public class Farms {
         ListPane.setOnMouseEntered(event -> ListPane.setStyle("-fx-background-color: #192128"));
         ListPane.setOnMouseExited(event -> ListPane.setStyle("-fx-background-color: #2f353c"));
         ListPane.setOnMouseClicked(event ->{
+
             Request.getFarmID(farmId);
             Request.getWorkers(farmId);
 

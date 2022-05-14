@@ -238,19 +238,19 @@ public class Profile {
 
             JSONObject params = new JSONObject();
             String name = fieldChangeName.getText().trim();
-            if(!name.equals(Account.getName())) params.put("name", name);
+            if(name != null && !name.equals(Account.getName())) params.put("name", name);
 
             String phone = fieldPhone.getText().trim();
-            if(!phone.equals(Account.getPhone())) params.put("phone", phone);
+            if(phone != null && !phone.equals(Account.getPhone())) params.put("phone", phone);
 
             String skype = fieldSkype.getText().trim();
-            if(!skype.equals(Account.getSkype())) params.put("skype", skype);
+            if(skype != null && !skype.equals(Account.getSkype())) params.put("skype", skype);
 
             String telegram = fieldTelegram.getText().trim();
-            if(!telegram.equals(Account.getTelegram())) params.put("telegram", telegram);
+            if(telegram != null && !telegram.equals(Account.getTelegram())) params.put("telegram", telegram);
 
-            String company = fieldCompany.getText().trim();
-            if(!company.equals(Account.getCompany())) params.put("company", company);
+            String company = fieldCompany.getText();
+            if(company != null && !company.equals(Account.getCompany())) params.put("company", company);
 
             if(!params.isEmpty() && Request.updateProfile(params) != Request.CODE_AUTHENTICATED_TOKEN){
                 fieldChangeName.setText(Account.getName());
